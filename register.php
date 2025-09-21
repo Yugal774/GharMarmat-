@@ -38,7 +38,7 @@
             </div><br><br><br>
 
             <div class="small-text">
-                Already have an account? <a href="login.html">Login</a>
+                Already have an account? <a href="login.php">Login</a>
             </div>
 
         </form>

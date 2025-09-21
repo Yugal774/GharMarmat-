@@ -27,8 +27,8 @@
                         <ul><a href="#">Contact Us</a></ul>
                     </li>
                     <li class="auth-link">
-                        <ul><a href="login.html"><i class="fa-solid fa-user"></i>Login</a></ul>
-                        <ul><a href="register.html">Register</a></ul>
+                        <ul><a href="login.php"><i class="fa-solid fa-user"></i>Login</a></ul>
+                        <ul><a href="register.php">Register</a></ul>
                     </li>
                 </div>
             </div>
