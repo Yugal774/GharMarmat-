@@ -28,7 +28,7 @@
                 </div>
 
                 <div class="links">
-                    Don't have an account? <a href="../Register/register.php">Register</a>
+                    Don't have an account? <a href="customer-register.php">Register</a>
                 </div>
             </form>
         </div>

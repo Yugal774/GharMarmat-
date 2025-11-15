@@ -5,13 +5,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register Page</title>
-    <link rel="stylesheet" href="../assets/css/register.css">
+    <link rel="stylesheet" href="../assets/css/customer-register.css">
 </head>
 
 <body>
 
     <div class="container">
-        <form action="../database/user.php" method="POST" onsubmit="return formValidate()" novalidate>
+        <form action="../database/customerRegisterdb.php" method="POST" onsubmit="return formValidate()" novalidate>
             <header>Create an account</header>
 
             <div class="form-group">
@@ -40,7 +40,7 @@
             <br><br>
 
             <div class="small-text">
-                Already have an account? <a href="../Login/login.php">Login</a>
+                Already have an account? <a href="login.php">Login</a>
             </div>
 
         </form>

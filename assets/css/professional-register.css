@@ -1,0 +1,98 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+form {
+    width: 35vw;
+    background-color: beige;
+    padding:0rem 4rem 3rem;
+    border-radius: 1rem;
+    box-shadow: -8px 8px 8px 0 rgba(0, 0, 0, 0.2);
+}
+
+.details heading {
+    height: 12vh;
+    width: 100%;
+    font-size: 2rem;
+    font-weight: 600;
+    font-family: serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.details p {
+    margin-bottom: 1.5rem;
+    font-weight: 600;
+    color:rgb(30, 30, 30);
+}
+
+.details div {
+    margin-bottom: 1rem;
+}
+
+label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+}
+
+input[type="text"],
+input[type="gmail"],
+input[type="password"] {
+    width: 100%;
+    padding: 0.5rem 0.625rem;
+    border: 0.0625rem solid #ccc;
+    border-radius: 0.5rem;
+}
+
+.profession {
+    margin-bottom: 1rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.profession label:first-child {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+}
+
+.profession .option {
+    display: inline-flex;
+    align-items: center;
+    margin-right: 1rem; 
+    margin-bottom: 0.5rem;
+}
+
+.profession .option input[type="radio"] {
+    margin: 0;
+    margin-right: 0.5rem;
+}
+
+button {
+    width: 100%;
+    padding: 0.625rem;
+    background-color: #4CAF50;
+    border: none;
+    border-radius: 0.5rem;
+    color: #fff;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button:hover {
+    background-color: #45a049;
+}

@@ -1,117 +1,123 @@
 body {
-    height: 100vh;
-    width: 100%;
+  height: 100vh;
+  width: 100%;
 }
 
 .user-container {
-    height: 100%;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .page-top {
-    height: 13.5vh;
-    width: 98%;
-    background-color: white;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding: 1rem;
+  height: 13.5vh;
+  width: 98%;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 1rem;
 }
 
 .user-icon {
-    font-size: 1.8rem;
-    font-weight: 600;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
+  font-size: 1.8rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
 }
 
 .page-title {
-    font-size: 1.9rem;
-    font-weight: 600;
-    padding: 0.15rem 0rem;
-    margin: 0;
+  font-size: 1.9rem;
+  font-weight: 600;
+  padding: 0.15rem 0rem;
+  margin: 0;
 }
 
 /*for user data*/
 .user-content {
-    height: 80vh;
-    width: 96%;
-    background-color: rgb(237, 232, 232);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  height: 80vh;
+  width: 96%;
+  background-color: rgb(237, 232, 232);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .content-top {
-    height: 10vh;
-    width: 100%;
-    background-color: rgb(237, 232, 232);
-    border-bottom: solid black 2px;
-    padding: 1.5rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+  height: 10vh;
+  width: 100%;
+  background-color: rgb(237, 232, 232);
+  border-bottom: solid black 2px;
+  padding: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .search input[type="search"] {
-    height: 4vh;
-    width: 12vw;
-    border: green 1px solid;
-    border-radius: 1rem;
-    padding-left: 1rem;
+  height: 4vh;
+  width: 12vw;
+  border: green 1px solid;
+  border-radius: 1rem;
+  padding-left: 1rem;
 }
 
 .status select {
-    font-size: 0.8rem;
-    font-weight: 600;
-    height: 4vh;
-    width: 6vw;
-    border: green 1px solid;
-    border-radius: 1rem;
-    padding-left: 0.5rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  height: 4vh;
+  width: 6vw;
+  border: green 1px solid;
+  border-radius: 1rem;
+  padding-left: 0.5rem;
 }
 
 .add-user button {
-    color: white;
-    background-color: green;
-    height: 4vh;
-    width: 8vw;
-    border: none;
-    border-radius: 1rem;
+  color: white;
+  background-color: green;
+  height: 4vh;
+  width: 8vw;
+  border: none;
+  border-radius: 1rem;
 }
 
+/*for user table*/
 .user-table {
-    height: max-content;
-    width: 98%;
-    margin-top: 1rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+  width: 100%;
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-table {
-    width: 100%;
-    border-collapse: collapse;
-    font-size: 1rem;
+.user-table table {
+  width: 98%;
+  border-collapse: collapse;
 }
 
-thead {
-    color: #fff;
-    display: flex;
-    align-items: center;
+.user-table thead {
+  background-color: green;
+  color: #fff;
+  text-align: left;
 }
 
-#heading {
-    height: 5vh;
-    width: 100%;
-    background: green;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 3rem;
+.user-table th {
+  padding: 0.5rem;
+}
+
+.user-table td {
+  padding: 0.5rem;
+  text-align: left;
+}
+
+.user-table tbody tr:hover {
+  background: #f3f3f3;
+}
+
+.user-table i {
+  color: red;
+  cursor: pointer;
 }

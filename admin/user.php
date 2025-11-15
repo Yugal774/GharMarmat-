@@ -46,19 +46,29 @@
                 <table>
                     <thead>
                         <tr id="heading">
-                            <td>ID</td>
-                            <td>FullName</td>
-                            <td>Email</td>
-                            <td>Service</td>
-                            <td>Status</td>
-                            <td>Action</td>
+                            <th>ID</th>
+                            <th>FullName</th>
+                            <th>Email</th>
+                            <th>Service</th>
+                            <th>Status</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>Yugal</td>
+                            <td>abc@gmail.com</td>
+                            <td>plumber</td>
+                            <td>Pending</td>
+                            <td><i class="fa-solid fa-trash"></i> Edit</td>
+                        </tr>
+                    </tbody>
                 </table>
             </div>
         </div>
 
-    </div>
+    </div>  
 </body>
 
 </html>

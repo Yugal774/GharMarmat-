@@ -20,7 +20,7 @@
         </div>
         <ul>
             <li><i class="fa-solid fa-house"></i> Dashboard</li>
-            <li><i class="fa-solid fa-user"></i> Customers</li>
+            <li href="user.php"><i class="fa-solid fa-user"></i> Customers</li>
             <li><i class="fa-solid fa-screwdriver-wrench"></i> Service Providers</li>
             <li><i class="fa-solid fa-calendar-days"></i> Bookings</li>
             <li><i class="fa-solid fa-envelope"></i> Messages</li>

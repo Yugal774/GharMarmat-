@@ -25,6 +25,7 @@ body {
 header {
     font-size: 1.7rem;
     font-weight: 600;
+    font-family: serif;
     margin-bottom: 25px;
     color: black;
 }
