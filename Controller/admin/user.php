@@ -1,3 +1,8 @@
+<?php
+// Import logic from controller
+$users = include '../controller/customer.php';
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -49,26 +54,34 @@
                             <th>ID</th>
                             <th>FullName</th>
                             <th>Email</th>
-                            <th>Service</th>
-                            <th>Status</th>
-                            <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>Yugal</td>
-                            <td>abc@gmail.com</td>
-                            <td>plumber</td>
-                            <td>Pending</td>
-                            <td><i class="fa-solid fa-trash"></i> Edit</td>
-                        </tr>
+
+                        <?php if (!empty($users)): ?>
+                            <?php foreach ($users as $user): ?>
+                                <tr>
+                                    <td><?= $user['id'] ?></td>
+                                    <td><?= $user['name'] ?></td>
+                                    <td><?= $user['email'] ?></td>
+                                    <td>
+                                        <i class="fa-solid fa-trash"></i>
+                                        Edit
+                                    </td>
+                                </tr>
+                            <?php endforeach; ?>
+                        <?php else: ?>
+                            <tr>
+                                <td colspan="6" style="text-align:center;">No users found</td>
+                            </tr>
+                        <?php endif; ?>
+
                     </tbody>
                 </table>
             </div>
         </div>
 
-    </div>  
+    </div>
 </body>
 
 </html>

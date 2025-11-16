@@ -1,6 +1,6 @@
 <?php
 
-include '../includes/dbconnect.php';
+include '../../includes/dbconnect.php';
 
 $name = $email = $password = $confirmpassword = "";
 $errors = [];
@@ -50,11 +50,11 @@ if (empty($errors)) {
     $email = $conn->real_escape_string($email);
     $password = password_hash($password, PASSWORD_DEFAULT);
 
-    $sql = "INSERT INTO user (name, email, password) 
-VALUES ('$name', '$email', '$password')";
+    $sql = "INSERT INTO customer_register (name, email, password) 
+    VALUES ('$name', '$email', '$password')";
 
     if ($conn->query($sql) === TRUE) {
-        echo "Id created sucessfully.";
+        echo "<script>alert('Id created sucessfully.')</script>";
     } else {
         echo "Error: " . $conn->error;
     }

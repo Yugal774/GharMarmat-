@@ -11,7 +11,7 @@
 <body>
 
     <div class="container">
-        <form action="../database/customerRegisterdb.php" method="POST" onsubmit="return formValidate()" novalidate>
+        <form action="../../Model/database/customerRegisterdb.php" method="POST" onsubmit="return formValidate()" novalidate>
             <header>Create an account</header>
 
             <div class="form-group">
