@@ -23,9 +23,9 @@
                     <i class="fa-solid fa-bars" id="menu"></i>
                     <li class="nav-link">
                         <ul><a href="#">Home</a></ul>
-                        <ul><a href="#">Services</a></ul>
-                        <ul><a href="#">About</a></ul>
-                        <ul><a href="#">Contact Us</a></ul>
+                        <ul><a href="services.php">Services</a></ul>
+                        <ul><a href="aboutus.php">About us</a></ul>
+                        <ul><a href="contactus.php">Contact Us</a></ul>
                     </li>
                     <li class="auth-link">
                         <ul><a href="../users/login.php"><i class="fa-solid fa-user"></i>Login</a></ul>

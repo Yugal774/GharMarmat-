@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
-<?php 
+<?php
 // Include and capture the returned users array
-$users = include '../../Controller/customerControl.php';
+$users = include '../../Controller/professionalControl.php';
 ?>
 
 <head>
@@ -13,7 +13,7 @@ $users = include '../../Controller/customerControl.php';
         integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="../assets/css/style.css">
-    <link rel="stylesheet" href="../assets/css/customer.css">
+    <link rel="stylesheet" href="../assets/css/professional.css">
 </head>
 
 <div>
@@ -21,18 +21,18 @@ $users = include '../../Controller/customerControl.php';
 </div>
 
 <body>
-    <div class="user-container">
+    <div class="professional-container">
         <div class="page-top">
-            <div class="user-icon">
+            <div class="professional-icon">
                 <i class="fa-solid fa-circle-user"></i>
-                <p> Customer</p>
+                <p> Professional</p>
             </div>
             <div class="page-title">
-                <p>Customer management</p>
+                <p>Professional management</p>
             </div>
         </div>
 
-        <div class="user-content">
+        <div class="professional-content">
             <div class="content-top">
                 <div class="search">
                     <input type="search" placeholder="🔍search">
@@ -45,30 +45,39 @@ $users = include '../../Controller/customerControl.php';
                         <option value="Completed">Cancelled</option>
                     </select>
                 </div>
-                <div class="add-user">
-                    <button onclick="window.location.href='../../View/users/customerRegister.php'"><i class="fa-solid fa-plus"></i>Add Customer</button>
+                <div class="add-professional">
+                    <button onclick="window.location.href='../../View/users/professionalRegister.php'">
+                        <i class="fa-solid fa-plus"></i> Add professional
+                    </button>
+
                 </div>
             </div>
 
-            <div class="user-table">
+            <div class="professional-table">
                 <table>
                     <thead>
                         <tr id="heading">
                             <th>ID</th>
                             <th>FullName</th>
-                            <th>Email</th>
+                            <th>Contact</th>
+                            <th>Gmail</th>
+                            <th>Address</th>
+                            <th>Profession</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
 
                     <tbody>
                         <?php
-                        if (!empty($users)):
-                            foreach ($users as $user): ?>
+                        if (!empty($professionals)):
+                            foreach ($professionals as $professional): ?>
                                 <tr>
-                                    <td><?php echo htmlspecialchars($user['id']); ?></td>
-                                    <td><?php echo htmlspecialchars($user['name']); ?></td>
-                                    <td><?php echo htmlspecialchars($user['email']); ?></td>
+                                    <td><?php echo htmlspecialchars($professional['id']); ?></td>
+                                    <td><?php echo htmlspecialchars($professional['name']); ?></td>
+                                    <td><?php echo htmlspecialchars($professional['contact']); ?></td>
+                                    <td><?php echo htmlspecialchars($professional['gmail']); ?></td>
+                                    <td><?php echo htmlspecialchars($professional['address']); ?></td>
+                                    <td><?php echo htmlspecialchars($professional['profession']); ?></td>
                                     <td>
                                         <i class="fa-solid fa-trash"></i>
                                         Edit
@@ -86,4 +95,5 @@ $users = include '../../Controller/customerControl.php';
         </div>
     </div>
 </body>
+
 </html>

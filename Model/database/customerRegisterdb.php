@@ -20,7 +20,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['register_btn'])) {
         $errors['email'] = "Please enter your email id.";
     } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
         $errors['email'] = "Invalid email!";
-    } 
+    }
 
     $password = trim($_POST['password']);
     $confirmpassword = trim($_POST['confirmpassword']);
@@ -48,7 +48,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['register_btn'])) {
 if (empty($errors)) {
     $name = $conn->real_escape_string($name);
     $email = $conn->real_escape_string($email);
-    $password = password_hash(password: $password, PASSWORD_DEFAULT);
+    $password = password_hash(password: $password, algo: PASSWORD_DEFAULT);
 
     $sql = "INSERT INTO customer_register (name, email, password) 
     VALUES ('$name', '$email', '$password')";

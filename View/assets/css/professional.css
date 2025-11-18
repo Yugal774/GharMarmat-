@@ -4,7 +4,7 @@
     background-color: blue;
 }
 /* For Container */
-.user-container {
+.professional-container {
     margin-left: 18vw;
     padding: 2rem;
     font-family: Arial, sans-serif;
@@ -18,17 +18,17 @@
     margin-bottom: 1.5rem;
 }
 
-.user-icon p{
+.professional-icon p{
     font-size: 1.7rem;
     margin: 0;
 }
 
-.user-icon i{
+.professional-icon i{
     font-size: 1.7rem;
     margin: 0;
 }
 
-.user-icon {
+.professional-icon {
     display: flex;
     align-items: center;
     gap: 0.5rem;
@@ -59,7 +59,7 @@
     outline: none;
 }
 
-.add-user button {
+.add-professional button {
     padding: 0.4rem 0.8rem;
     border: none;
     border-radius: 0.3rem;
@@ -69,30 +69,30 @@
 }
 
 /* User Table */
-.user-table table {
+.professional-table table {
     width: 100%;
     border-collapse: collapse;
     background-color: #fff;
     font-family: Arial, sans-serif;
 }
 
-.user-table th,
-.user-table td {
+.professional-table th,
+.professional-table td {
     padding: 0.5rem 1rem;
     border: 1px solid #ccc;
     text-align: left;
 }
 
-.user-table thead {
+.professional-table thead {
     background-color: #e9c758;
     font-weight: bold;
 }
 
-.user-table tbody tr:hover {
+.professional-table tbody tr:hover {
     background-color: #f1f1f1;
 }
 
-e.user-table td i {
+e.professional-table td i {
     margin-right: 0.5rem;
 }
 

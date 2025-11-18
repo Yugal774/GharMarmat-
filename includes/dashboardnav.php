@@ -28,7 +28,10 @@
                     <li><i class="fa-solid fa-user"></i> Customers</li>
                 </a>
 
-                <li><i class="fa-solid fa-screwdriver-wrench"></i> Service Providers</li>
+                <a href="\GharMarmat\View\admindashboard\professional.php">
+                    <li><i class="fa-solid fa-screwdriver-wrench"></i> Professionals</li>
+                </a>
+
                 <li><i class="fa-solid fa-calendar-days"></i> Bookings</li>
                 <a href="user.php">
                     <li><i class="fa-solid fa-envelope"></i> Messages</li>
