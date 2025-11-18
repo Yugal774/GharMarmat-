@@ -1,8 +1,3 @@
-<?php
-// Import logic from controller
-$users = include '../controller/customer.php';
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -14,15 +9,19 @@ $users = include '../controller/customer.php';
         integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="../assets/css/style.css">
-    <link rel="stylesheet" href="../assets/css/user.css">
+    <link rel="stylesheet" href="../assets/css/customer.css">
 </head>
+
+<div>
+    <?php include '../../includes/dashboardnav.php' ?>
+</div>
 
 <body>
     <div class="user-container">
         <div class="page-top">
             <div class="user-icon">
                 <i class="fa-solid fa-circle-user"></i>
-                <p>Admin</p>
+                <p> Admin</p>
             </div>
             <div class="page-title">
                 <p>User management</p>
@@ -54,31 +53,24 @@ $users = include '../controller/customer.php';
                             <th>ID</th>
                             <th>FullName</th>
                             <th>Email</th>
+                            <th>Actions</th>
                         </tr>
                     </thead>
+
                     <tbody>
-
-                        <?php if (!empty($users)): ?>
-                            <?php foreach ($users as $user): ?>
-                                <tr>
-                                    <td><?= $user['id'] ?></td>
-                                    <td><?= $user['name'] ?></td>
-                                    <td><?= $user['email'] ?></td>
-                                    <td>
-                                        <i class="fa-solid fa-trash"></i>
-                                        Edit
-                                    </td>
-                                </tr>
-                            <?php endforeach; ?>
-                        <?php else: ?>
-                            <tr>
-                                <td colspan="6" style="text-align:center;">No users found</td>
-                            </tr>
-                        <?php endif; ?>
-
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td><i class="fa-solid fa-trash"></i>
+                                Edit
+                            </td>
+                        </tr>
                     </tbody>
+
                 </table>
             </div>
+
         </div>
 
     </div>

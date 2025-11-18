@@ -14,24 +14,12 @@
 
 <body>
 
-    <aside class="sidebar">
-        <div class="header">
-            <h3>Admin</h3>
-        </div>
-        <ul>
-            <li><i class="fa-solid fa-house"></i> Dashboard</li>
-            <li href="user.php"><i class="fa-solid fa-user"></i> Customers</li>
-            <li><i class="fa-solid fa-screwdriver-wrench"></i> Service Providers</li>
-            <li><i class="fa-solid fa-calendar-days"></i> Bookings</li>
-            <a href="user.php">
-            <li><i class="fa-solid fa-envelope"></i> Messages</li>
-            </a>
-            <li><i class="fa-solid fa-gear"></i> Settings</li>
-            <li id="log-out"><i class="fa-solid fa-right-from-bracket"></i> Log Out</li>
-        </ul>
-    </aside>
+    <div>
+        <?php include '../../includes/dashboardnav.php' ?>
+    </div>
 
     <div class="dashboard">
+
         <div class="top-bar">
             <div class="search-bar">
                 <input type="search" placeholder="search">
@@ -89,7 +77,7 @@
                             <th>name</th>
                             <th>booking date</th>
                             <th>service</th>
-                            <th>ammount</th>
+                            <th>amount</th>
                             <th>status</th>
                         </tr>
                     </thead>
@@ -102,61 +90,49 @@
                             <td>$1000</td>
                             <td>pending</td>
                         </tr>
-                    </tbody>
-                    <tbody>
                         <tr>
-                            <td>1.</td>
+                            <td>2.</td>
                             <td>Yugal</td>
                             <td>20025/7/15</td>
                             <td>plumber</td>
                             <td>$1000</td>
                             <td>pending</td>
                         </tr>
-                    </tbody>
-                    <tbody>
                         <tr>
-                            <td>1.</td>
+                            <td>3.</td>
                             <td>Yugal</td>
                             <td>20025/7/15</td>
                             <td>plumber</td>
                             <td>$1000</td>
                             <td>pending</td>
                         </tr>
-                    </tbody>
-                    <tbody>
                         <tr>
-                            <td>1.</td>
+                            <td>4.</td>
                             <td>Yugal</td>
                             <td>20025/7/15</td>
                             <td>plumber</td>
                             <td>$1000</td>
                             <td>pending</td>
                         </tr>
-                    </tbody>
-                    <tbody>
                         <tr>
-                            <td>1.</td>
+                            <td>5.</td>
                             <td>Yugal</td>
                             <td>20025/7/15</td>
                             <td>plumber</td>
                             <td>$1000</td>
                             <td>pending</td>
                         </tr>
-                    </tbody>
-                    <tbody>
                         <tr>
-                            <td>1.</td>
+                            <td>6.</td>
                             <td>Yugal</td>
                             <td>20025/7/15</td>
                             <td>plumber</td>
                             <td>$1000</td>
                             <td>pending</td>
                         </tr>
-                    </tbody>
-                    <tbody>
                         <tr>
-                            <td>1.</td>
-                            <td>Yugal rai</td>
+                            <td>7.</td>
+                            <td>Yugal Rai</td>
                             <td>20025/7/15</td>
                             <td>plumber</td>
                             <td>$1000</td>
@@ -167,6 +143,7 @@
             </div>
         </div>
 
-    </div </body>
+    </div>
+</body>
 
 </html>

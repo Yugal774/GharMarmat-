@@ -12,7 +12,7 @@
     <div class="container">
 
     </div>
-    <form action="../../Model/database/professionalRegisterdb.php" method="POST">
+    <form action="../../Model/database/professionalRegisterdb.php" method="POST" onsubmit="return formValidate()">
 
         <div class="details">
             <heading>Register as a Professional</heading>
@@ -76,6 +76,8 @@
             <button type="submit" name="submit">Submit</button>
         </div>
     </form>
+
+<script src="../assets/js/professionalregister.js"></script>
 </body>
 
 </html>
