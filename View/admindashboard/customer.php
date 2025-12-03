@@ -69,9 +69,11 @@ $users = include '../../Controller/customerControl.php';
                                     <td><?php echo htmlspecialchars($user['id']); ?></td>
                                     <td><?php echo htmlspecialchars($user['name']); ?></td>
                                     <td><?php echo htmlspecialchars($user['email']); ?></td>
-                                    <td>
-                                        <i class="fa-solid fa-trash"></i>
+                                    <td class="edit">
+                                        <a href="../users/customeredit.php">
+                                        <i class="fa-solid fa-pen-to-square"></i>
                                         Edit
+                                        </a>
                                     </td>
                                 </tr>
                             <?php endforeach;

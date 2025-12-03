@@ -73,14 +73,16 @@ $users = include '../../Controller/professionalControl.php';
                             foreach ($professionals as $professional): ?>
                                 <tr>
                                     <td><?php echo htmlspecialchars($professional['id']); ?></td>
-                                    <td><?php echo htmlspecialchars($professional['name']); ?></td>
+                                    <td><?php echo htmlspecialchars(string: $professional['name']); ?></td>
                                     <td><?php echo htmlspecialchars($professional['contact']); ?></td>
                                     <td><?php echo htmlspecialchars($professional['gmail']); ?></td>
                                     <td><?php echo htmlspecialchars($professional['address']); ?></td>
                                     <td><?php echo htmlspecialchars($professional['profession']); ?></td>
-                                    <td>
-                                        <i class="fa-solid fa-trash"></i>
-                                        Edit
+                                    <td class="edit">
+                                        <a href="../users/professionalEdit.php?id=<?= $professional['id'] ?>">
+                                            <i class="fa-solid fa-pen-to-square"></i>
+                                            Edit
+                                        </a>
                                     </td>
                                 </tr>
                             <?php endforeach;

@@ -96,6 +96,11 @@ e.professional-table td i {
     margin-right: 0.5rem;
 }
 
+.edit a {
+    text-decoration:none;
+}
+
+
 /* ===== Responsive ===== */
 @media (max-width: 768px) {
     .user-container {

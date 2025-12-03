@@ -88,6 +88,10 @@
     font-weight: bold;
 }
 
+.edit a {
+    text-decoration:none;
+}
+
 .user-table tbody tr:hover {
     background-color: #f1f1f1;
 }

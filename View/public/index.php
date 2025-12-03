@@ -99,7 +99,7 @@
                 <li>Fri – 9 AM to 5 PM</li>
                 <li>Sat – 9 AM to 5 PM</li>
             </ul>
-            <p class="emergency">Emergency Services Also Available</p>
+            <p class="emergency">Services are available now.</p>
             <a href="#" class="book-now">Book Now</a>
         </section>
 
