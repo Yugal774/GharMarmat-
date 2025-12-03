@@ -70,7 +70,7 @@ $users = include '../../Controller/customerControl.php';
                                     <td><?php echo htmlspecialchars($user['name']); ?></td>
                                     <td><?php echo htmlspecialchars($user['email']); ?></td>
                                     <td class="edit">
-                                        <a href="../users/customeredit.php">
+                                        <a href="../users/customeredit.php?id=<?=$user['id']?>">
                                         <i class="fa-solid fa-pen-to-square"></i>
                                         Edit
                                         </a>

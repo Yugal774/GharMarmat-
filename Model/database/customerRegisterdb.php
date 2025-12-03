@@ -5,58 +5,119 @@ include '../../includes/dbconnect.php';
 $name = $email = $password = $confirmpassword = "";
 $errors = [];
 
-//taking input from form
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['register_btn'])) {
 
+    $id = $_POST['id'] ?? '';
+
+    //Getting input from user
     $name = trim($_POST['fullname']);
-    if ($name == "") {
-        $errors['name'] = "Please enter your name.";
-    } elseif (strlen($name) < 3) {
-        $errors['name'] = "Fullname is too short.";
-    }
-
-    $email = trim($_POST['email']);
-    if ($email == "") {
-        $errors['email'] = "Please enter your email id.";
-    } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        $errors['email'] = "Invalid email!";
-    }
-
+    $gmail = trim($_POST['email']);
     $password = trim($_POST['password']);
-    $confirmpassword = trim($_POST['confirmpassword']);
+    $cpassword = trim($_POST['Cpassword']);
 
-    if ($password == "") {
-        $errors['password'] = "Please enter your password.";
-    } elseif (strlen($password) < 6) {
-        $errors['password'] = "Password must be at least 6 characters.";
+    // Name validation 
+    if ($name == "") {
+        $errors[] = "Please enter your name.";
+    } elseif (strlen($name) < 3) {
+        $errors[] = "Name is too short.";
     }
 
-    if ($confirmpassword == "") {
-        $errors['confirmpassword'] = "Please enter confirm password.";
-    } elseif ($confirmpassword != $password) {
-        $errors['confirmpassword'] = "Passwords do not match.";
+    // Gmail validation
+    if ($gmail == "") {
+        $errors[] = "Please enter your Gmail ID.";
+    } elseif (!filter_var($gmail, FILTER_VALIDATE_EMAIL)) {
+        $errors[] = "Invalid email format!";
+    } elseif (!preg_match("/@gmail\.com$/", $gmail)) {
+        $errors[] = "Email must be a Gmail address!";
     }
 
-    if (!empty($errors)) {
-        foreach ($errors as $key => $error) {
-            echo "<p>$error</p>";
+    // Password validation
+    if (empty($id)) {
+        //for new professional
+        if ($password == "") {
+            $errors[] = "Please enter a password.";
         }
     }
-}
 
-//inserting data into database
-if (empty($errors)) {
-    $name = $conn->real_escape_string($name);
-    $email = $conn->real_escape_string($email);
-    $password = password_hash(password: $password, algo: PASSWORD_DEFAULT);
+    if (!empty($password)) {
+        if (strlen($password) < 8) {
+            $errors[] = "Password must be at least 8 characters long!";
+        }
+        if (!preg_match("/[A-Z]/", $password)) {
+            $errors[] = "Password must contain at least one uppercase letter!";
+        }
+        if (!preg_match("/[a-z]/", $password)) {
+            $errors[] = "Password must contain at least one lowercase letter!";
+        }
+        if (!preg_match("/[0-9]/", $password)) {
+            $errors[] = "Password must contain at least one number!";
+        }
+        if (!preg_match("/[\W]/", $password)) {
+            $errors[] = "Password must contain at least one special character!";
+        }
 
-    $sql = "INSERT INTO customer_register (name, email, password) 
-    VALUES ('$name', '$email', '$password')";
+        // Confirm password
+        if ($cpassword == "") {
+            $errors[] = "Please enter confirm password.";
+        } elseif ($cpassword != $password) {
+            $errors[] = "Confirm password must match password.";
+        }
+    }
 
-    if ($conn->query($sql) === TRUE) {
-        echo "<script>alert('Id created sucessfully.')</script>";
+    // inform the error
+    if (!empty($errors)) {
+        foreach ($errors as $error) {
+            echo "<script>alert('Error: " . $error . "');</script>";
+        }
+        exit;
+    }
+
+    //For insertion of new customer
+    if (empty($id)) {
+
+        $check_sql = "SELECT * FROM customer_register WHERE Gmail='$gmail' ";
+        $check_result = $conn->query($check_sql);
+
+        if ($check_result && $check_result->num_rows > 0) {
+            echo "<script>alert('User with this Gmail already exists.');</script>";
+            exit;
+        }
+
+        $password = password_hash($password, PASSWORD_DEFAULT);
+
+        $sql = "INSERT INTO customer_register (name, gmail, password)
+                VALUES ('$name', '$gmail', '$password', '$profession')";
+
+        if ($conn->query($sql) === TRUE) {
+            echo "<script>
+            alert('Id created successfully');
+            window.location.href='../../View/public/index.php';
+            </script>";
+        } else {
+            echo "<script>alert('Error: " . $conn->error . "');</script>";
+        }
+
     } else {
-        echo "Error: " . $conn->error;
+
+        $sql = "UPDATE customer_register SET
+                    name='$name',
+                    email='$gmail'";
+
+        if (!empty($password)) {
+            $password = password_hash($password, PASSWORD_DEFAULT);
+            $sql .= ", Password='$password'";
+        }
+
+        $sql .= " WHERE id='$id'";
+
+        if ($conn->query($sql) === TRUE) {
+            echo "<script>
+            alert('Id updated successfully');
+            window.location.href='../../View/admindashboard/customer.php';
+            </script>";
+        } else {
+            echo "<script>alert('Error: " . $conn->error . "');</script>";
+        }
     }
 
     $conn->close();

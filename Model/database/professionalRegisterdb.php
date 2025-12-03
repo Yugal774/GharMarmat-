@@ -90,10 +90,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
         exit;
     }
 
-    //For insertion of new user 
+    //For insertion of new professional
     if (empty($id)) {
-
-if (empty($id)) {
 
         $check_sql = "SELECT * FROM professional_register WHERE Gmail='$gmail' OR Contact='$contact'";
         $check_result = $conn->query($check_sql);
@@ -103,25 +101,21 @@ if (empty($id)) {
             exit;
         }
 
-        $password_hashed = password_hash($password, PASSWORD_DEFAULT);
+        $password = password_hash($password, PASSWORD_DEFAULT);
 
         $sql = "INSERT INTO professional_register (Name, Contact, Gmail, Address, Password, Profession)
-                VALUES ('$name', '$contact', '$gmail', '$address', '$password_hashed', '$profession')";
+                VALUES ('$name', '$contact', '$gmail', '$address', '$password', '$profession')";
 
         if ($conn->query($sql) === TRUE) {
             echo "<script>
-            alert('Record created successfully');
+            alert('Id created successfully');
             window.location.href='../../View/public/index.php';
             </script>";
         } else {
             echo "<script>alert('Error: " . $conn->error . "');</script>";
         }
 
-    }
-    } 
-  
-
-    else {
+    } else {
 
         $sql = "UPDATE professional_register SET
                     Name='$name',
@@ -140,7 +134,7 @@ if (empty($id)) {
         if ($conn->query($sql) === TRUE) {
             echo "<script>
             alert('Information updated successfully');
-            window.location.href='../../View/admindashboard/dashboard.php';
+            window.location.href='../../View/admindashboard/professional.php';
             </script>";
         } else {
             echo "<script>alert('Error: " . $conn->error . "');</script>";
