@@ -12,10 +12,10 @@
     <div class="container">
         <div class="form-box">
             <header>Login</header>
-            <form action="login.php" method="POST">
+            <form action="../../Controller/loginControl.php" method="POST">
                 <div class="field-input">
-                    <label for="username">Username </label>
-                    <input type="text" name="username" id="username" value="Yugal rai" required>
+                    <label for="gmail">Gmail </label>
+                    <input type="text" name="gmail" id="gmail" placeholder="@gmail" required>
                 </div><br>
 
                 <div class="field-input">
