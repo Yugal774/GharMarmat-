@@ -14,8 +14,8 @@
             <header>Login</header>
             <form action="../../Controller/loginControl.php" method="POST">
                 <div class="field-input">
-                    <label for="gmail">Gmail </label>
-                    <input type="text" name="gmail" id="gmail" placeholder="@gmail" required>
+                    <label for="gmail">Email </label>
+                    <input type="text" name="gmail" id="gmail" required>
                 </div><br>
 
                 <div class="field-input">

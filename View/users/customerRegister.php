@@ -11,33 +11,35 @@
 <body>
 
     <div class="container">
-        <form action="../../Model/database/customerRegisterdb.php" method="POST" onsubmit="return formValidate()" novalidate>
+        <form action="../../Model/database/customerRegisterdb.php" method="POST" onsubmit="return formValidate()"
+            novalidate>
             <header>Create an account</header>
 
             <div class="form-group">
                 <label for="fullname">Full Name</label>
-                <input type="text" name="fullname" id="fullname">
+                <input type="text" name="fullname" id="fullname" placeholder="Enter your name">
             </div>
 
             <div class="form-group">
                 <label for="email">Email</label>
-                <input type="email" name="email" id="email">
+                <input type="email" name="email" id="email" placeholder="Enter your email">
             </div>
 
             <div class="form-group">
                 <label for="password">Password</label>
-                <input type="password" name="password" id="password">
+                <input type="password" name="password" id="password" placeholder="Enter your password">
             </div>
 
             <div class="form-group">
                 <label for="confirmpassword">Confirm Password</label>
-                <input type="password" name="confirmpassword" id="confirmpassword">
+                <input type="password" name="confirmpassword" id="confirmpassword" placeholder="Re-enter your password">
             </div><br>
 
-            <button type="submit" id="submit-btn" name="register_btn" value="CREATE ACCOUNT">
-                CREATE ACCOUNT
-            </button>
-            <br><br>
+            <div class="button-container">
+                <button type="submit" id="submit-btn" name="register_btn" value="CREATE ACCOUNT">
+                    CREATE ACCOUNT
+                </button>
+            </div>
 
             <div class="small-text">
                 Already have an account? <a href="login.php">Login</a>

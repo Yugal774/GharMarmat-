@@ -1,6 +1,7 @@
 body {
     height: 100vh;
     display: flex;
+    background-color: rgb(248, 245, 245);
     justify-content: center;
     align-items: center;
     font-family: "Montserrat", sans-serif;
@@ -13,10 +14,10 @@ body {
 }
 
 .form-box {
-    background: beige;
+    background: white;
     padding: 2.5rem 3.125rem;
     border-radius: 15px;
-    box-shadow: -8px 8px 8px 0 rgba(0, 0, 0, 0.2);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
     height: 45vh;
     width: 22vw;
     text-align: center;
@@ -58,10 +59,14 @@ header {
     width: 12vw;
     font-size: 1.1rem;
     color: #fff;
-    background: green;
+    background-color: rgb(60, 60, 191);
     border: none;
     border-radius: 0.2rem;
     padding: 0.4rem;
+}
+
+.button:hover{
+    background-color: green;
 }
 
 .links {
