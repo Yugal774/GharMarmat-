@@ -1,62 +1,57 @@
 function formValidate() {
-    // Get input values
-    let name = document.getElementById("name").value.trim();
-    let contact = document.getElementById("contact").value.trim();
-    let gmail = document.getElementById("gmail").value.trim();
-    let address = document.getElementById("address").value.trim();
-    let password = document.getElementById("password").value.trim();
-    let Cpassword = document.getElementById("Cpassword").value.trim();
-    let profession = document.getElementById("profession").value;
+    // To get input from user
+    const name = document.getElementById("name").value.trim();
+    const contact = document.getElementById("contact").value.trim();
+    const gmail = document.getElementById("gmail").value.trim();
+    const address = document.getElementById("address").value.trim();
+    const password = document.getElementById("password").value.trim();
+    const cpassword = document.getElementById("Cpassword").value.trim();
+    const profession = document.getElementById("profession").value;
 
-    // Clear all previous errors
-    document.querySelectorAll(".error-message").forEach(span => span.innerText = "");
-
-    let isValid = true;
-
-    // Name validation
-    if (name === "") {
-        document.getElementById("nameError").innerText = "Please enter your full name.";
-        isValid = false;
+    // Name Validation
+    if (name.length < 3) {
+        alert("Full name must be at least 3 characters long.");
+        return false;
     }
 
-    // Contact validation
+    // Contact Validation
     const contactPattern = /^(98|97)\d{8}$/;
     if (!contactPattern.test(contact)) {
-        document.getElementById("contactError").innerText = "Enter a valid contact number (98XXXXXXXX or 97XXXXXXXX).";
-        isValid = false;
+        alert("Contact number must be 10 digits.");
+        return false;
     }
 
-    // Gmail validation
+    // Gmail Validation
     const gmailPattern = /^[a-zA-Z0-9._%+-]+@gmail\.com$/;
     if (!gmailPattern.test(gmail)) {
-        document.getElementById("gmailError").innerText = "Enter a valid Gmail (must end with @gmail.com).";
-        isValid = false;
+        alert("Please enter a valid Gmail address.");
+        return false;
     }
 
-    // Address validation
-    if (address === "") {
-        document.getElementById("addressError").innerText = "Please enter your address.";
-        isValid = false;
+    // Address Validation
+    if (address.length < 3) {
+        alert("Address must be at least 3 characters long.");
+        return false;
     }
 
-    // Password validation
-    const passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{6,}$/;
-    if (!passwordPattern.test(password)) {
-        document.getElementById("passwordError").innerText = "Password must be at least 6 characters and include: One uppercase, One lowercase, One number.";
-        isValid = false;
+    // Password Strength Validation
+    const passPattern = /^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&]).{8,}$/;
+    if (!passPattern.test(password)) {
+        alert("Password must be at least 6 characters, contain one uppercase letter, one number, and one special character.");
+        return false;
     }
 
-    // Confirm password
-    if (password !== Cpassword) {
-        document.getElementById("CpasswordError").innerText = "Passwords do not match.";
-        isValid = false;
+    // Confirm Password Validation
+    if (password !== cpassword) {
+        alert("Passwords do not match.");
+        return false;
     }
 
-    // Profession dropdown validation
+    // Profession Validation
     if (profession === "") {
-        document.getElementById("professionError").innerText = "Please select a profession.";
-        isValid = false;
+        alert("Please choose your profession.");
+        return false;
     }
 
-    return isValid; // Submit only if all fields are valid
+    return true;
 }

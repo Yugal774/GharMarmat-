@@ -15,12 +15,12 @@
             <form action="../../Controller/loginControl.php" method="POST">
                 <div class="field-input">
                     <label for="gmail">Email </label>
-                    <input type="text" name="gmail" id="gmail" required>
+                    <input type="text" name="gmail" id="gmail" placeholder="Enter full name" required>
                 </div><br>
 
                 <div class="field-input">
                     <label for="passowrd">Password</label>
-                    <input type="password" name="passowrd" id="password" required>
+                    <input type="password" name="passowrd" id="password" placeholder="Enter your password" required>
                 </div><br><br>
 
                 <div id="submit">

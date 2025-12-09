@@ -48,7 +48,7 @@
         </form>
     </div>
 
-    <script src="../assets/js/register.js"></script>
+    <script src="../assets/js/customerRegister.js"></script>
 </body>
 
 </html>
