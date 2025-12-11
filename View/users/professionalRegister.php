@@ -1,3 +1,9 @@
+<?php
+include '../../includes/dbconnect.php';
+$sql = "SELECT profession_id, profession_name FROM profession";
+$result = $conn->query(query: $sql);
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -9,7 +15,8 @@
 </head>
 
 <body>
-    <form action="../../Model/database/professionalRegisterdb.php" method="POST" onsubmit="return formValidate()" autocomplete="off">
+    <form action="../../Model/database/professionalRegisterdb.php" method="POST" onsubmit="return formValidate()"
+        autocomplete="off">
 
         <div class="details">
             <h1>Register as a Professional</h1>
@@ -32,7 +39,8 @@
 
             <div class="form-group">
                 <label for="address">Your address</label>
-                <input type="text" name="address" id="address" placeholder="Enter address" autocomplete="street-address">
+                <input type="text" name="address" id="address" placeholder="Enter address"
+                    autocomplete="street-address">
             </div>
 
             <div class="form-group">
@@ -47,19 +55,22 @@
 
             <div class="form-group">
                 <label for="profession">Choose profession</label>
-                <select name="profession" id="profession" required>
+                <select name="profession_id" id="profession" required>
                     <option value="">Select Profession</option>
-                    <option value="plumber">Plumber</option>
-                    <option value="electrician">Electrician</option>
-                    <option value="cleaner">Cleaner</option>
-                    <option value="painter">Painter</option>
-                    <option value="computer-technician">Computer Technician</option>
+                    <?php while ($row = $result->fetch_assoc()) { ?>
+                        <option value="<?php echo $row['profession_id']; ?>">
+                            <?php echo $row['profession_name']; ?>
+                        </option>
+                    <?php } ?>
                 </select>
             </div>
 
             <div class="button-container">
                 <button type="submit" name="submit">Submit</button>
             </div>
+
+            <input type = "hidden" name="role" value="professional">
+            
         </div>
     </form>
 

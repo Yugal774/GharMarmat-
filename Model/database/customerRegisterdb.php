@@ -13,7 +13,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['register_btn'])) {
     $name = trim($_POST['fullname']);
     $gmail = trim($_POST['email']);
     $password = trim($_POST['password']);
-    $cpassword = trim($_POST['Cpassword']);
+    $cpassword = trim($_POST['confirmpassword']);
+    $role = $_POST['role'];
 
     // Name validation 
     if ($name == "") {
@@ -75,18 +76,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['register_btn'])) {
     //For insertion of new customer
     if (empty($id)) {
 
-        $check_sql = "SELECT * FROM customer_register WHERE Gmail='$gmail' ";
+        $check_sql = "SELECT * FROM users WHERE Gmail='$gmail' ";
         $check_result = $conn->query($check_sql);
 
         if ($check_result && $check_result->num_rows > 0) {
-            echo "<script>alert('User with this Gmail already exists.');</script>";
+            echo "<script>
+            alert('User with this Gmail already exists.');
+            window.location.href='../../View/users/customerRegister.php';
+            </script>";
             exit;
         }
 
         $password = password_hash($password, PASSWORD_DEFAULT);
 
-        $sql = "INSERT INTO customer_register (name, gmail, password)
-                VALUES ('$name', '$gmail', '$password', '$profession')";
+        $sql = "INSERT INTO users (Name, Contact, Gmail, Address, Password, Profession, Role)
+        VALUES ('$name', NULL, '$gmail', NULL, '$password', NULL, '$role')";
 
         if ($conn->query($sql) === TRUE) {
             echo "<script>

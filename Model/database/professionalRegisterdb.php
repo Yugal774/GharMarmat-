@@ -7,12 +7,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
 
     // Trim and get input values
     $name = trim($_POST['name']);
-    $contact = trim($_POST['contact']);
+    $contact = $_POST['contact'];
     $gmail = trim($_POST['gmail']);
     $address = trim($_POST['address']);
     $password = trim($_POST['password']);
     $cpassword = trim($_POST['Cpassword']);
-    $profession = $_POST['profession'] ?? '';
+    $profession = $_POST['profession_id'];
+    $role = $_POST['role'];
 
     $errors = [];
 
@@ -93,18 +94,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
     //For insertion of new professional
     if (empty($id)) {
 
-        $check_sql = "SELECT * FROM professional_register WHERE Gmail='$gmail' OR Contact='$contact'";
+        $check_sql = "SELECT * FROM users WHERE Gmail='$gmail' OR Contact='$contact'";
         $check_result = $conn->query($check_sql);
 
         if ($check_result && $check_result->num_rows > 0) {
-            echo "<script>alert('User with this Gmail or Contact already exists.');</script>";
+            echo "<script>
+                alert('User with this Gmail or Contact already exists.');
+            window.location.href='../../View/users/professionalRegister.php';
+            </script>";
             exit;
         }
 
         $password = password_hash($password, PASSWORD_DEFAULT);
 
-        $sql = "INSERT INTO professional_register (Name, Contact, Gmail, Address, Password, Profession)
-                VALUES ('$name', '$contact', '$gmail', '$address', '$password', '$profession')";
+        $sql = "INSERT INTO users (Name, Contact, Gmail, Address, Password, Profession, Role)
+                VALUES ('$name', '$contact', '$gmail', '$address', '$password', '$profession', '$role')";
 
         if ($conn->query($sql) === TRUE) {
             echo "<script>

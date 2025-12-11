@@ -20,7 +20,7 @@ function formValidate() {
         return false;
     }
 
-    //Email Validation//
+    //Email validation//
     if (email === "") {
         alert("Please enter your email.");
         return false;
@@ -30,7 +30,7 @@ function formValidate() {
         return false;
     }
 
-    //Password Validation//
+    //Password validation//
     if (password === "") {
         alert("Please enter your password.");
         return false;
@@ -40,7 +40,7 @@ function formValidate() {
         return false;
     }
 
-    //Confirm Password Validation//
+    //Confirm Password validation//
     if (confirmpassword === "") {
         alert("Please re-enter your password!");
         return false;

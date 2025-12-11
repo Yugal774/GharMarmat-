@@ -41,6 +41,8 @@
                 </button>
             </div>
 
+            <input type="hidden" name="role" value="customer">
+
             <div class="small-text">
                 Already have an account? <a href="login.php">Login</a>
             </div>
