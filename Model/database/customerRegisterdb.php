@@ -12,7 +12,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['register_btn'])) {
     //Getting input from user
     $name = trim($_POST['fullname']);
     $gmail = trim($_POST['email']);
-    $password = trim($_POST['password']);
+    $password = trim($_POS`T['password']);
     $cpassword = trim($_POST['confirmpassword']);
     $role = $_POST['role'];
 

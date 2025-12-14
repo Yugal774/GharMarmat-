@@ -12,7 +12,7 @@
     <div class="container">
         <div class="form-box">
             <header>Login</header>
-            <form action="../../Controller/loginControl.php" method="POST">
+            <form action="../../Controller/loginControl.php" method="POST" onsubmit="return formvalidation()">
                 <div class="field-input">
                     <label for="gmail">Email </label>
                     <input type="text" name="gmail" id="gmail" placeholder="Enter full name" required>
@@ -20,18 +20,21 @@
 
                 <div class="field-input">
                     <label for="passowrd">Password</label>
-                    <input type="password" name="passowrd" id="password" placeholder="Enter your password" required>
+                    <input type="password" name="password" id="password" placeholder="Enter your password" required>
                 </div><br><br>
 
                 <div id="submit">
-                    <button type="submit" value="Submit" class="button">Login</button>
+                    <button type="submit" value="login" name ="login"class="button">Login</button>
                 </div>
 
                 <div class="links">
-                    Don't have an account? <a href="customer-register.php">Register</a>
+                    Don't have an account? <a href="registerType.php">Register</a>
                 </div>
             </form>
         </div>
     </div>
 </body>
+
+<script src="../login.js"></script>
+
 </html>

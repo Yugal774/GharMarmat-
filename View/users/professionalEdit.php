@@ -1,117 +1,101 @@
-<?php include"../../includes/dbconnect.php";
+<?php include "../../includes/dbconnect.php";
 $id = $_GET['id'];
-$query = "SELECT * FROM professional_register where id= $id";
+$query = "SELECT * FROM users where id= $id";
 $data = mysqli_query($conn, $query);
-$result = mysqli_fetch_assoc($data);
+$professional_info = mysqli_fetch_assoc($data);
+$sql = "SELECT profession_id, profession_name FROM profession";
+$result = $conn->query(query: $sql);
 ?>
-
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Professional Register</title>
     <link rel="stylesheet" href="../assets/css/professional-register.css">
 </head>
+
 <body>
-    <form action="../../Model/database/professionalRegisterdb.php" method="POST" onsubmit="return formValidate()">
-        <input type="hidden" name="id" value="<?php echo $result['Id']; ?>">
+    <form action="../../Model/database/professionalRegisterdb.php" method="POST" onsubmit="return formValidate()"
+        autocomplete="off">
+        <input type="hidden" name="id" value="<?php echo $professional_info['Id']; ?>">
+
 
         <div class="details">
-            <heading>Edit Your Information</heading>
+            <h1>Edit Your Information</h1>
+            <p>Edit your details:</p>
 
-            <p>Enter your details:</p>
-
-            <div class="name" id="style">
-                <label for="name">Full name:</label>
-                <input type="text" value="<?php echo ($result['Name']); ?>" name="name" id="name" required>
+            <div class="form-group">
+                <label for="name">Full name</label>
+                <input type="text" name="name" id="name" placeholder="Enter full name"
+                    value="<?php echo ($professional_info['Name']); ?>" required>
             </div>
 
-            <div class="contact" id="style">
-                <label for="contact">Contact number:</label>
-                <input type="text" value="<?php echo ($result['Contact']); ?>" name="contact" id="contact" required>
+            <div class="form-group">
+                <label for="contact">Contact number</label>
+                <input type="text" name="contact" id="contact" placeholder="98XXXXXXXX"
+                    value="<?php echo ($professional_info['Contact']); ?>" required>
             </div>
 
-            <div class="gmail" id="style">
-                <label for="gmail">Gmail address:</label>
-                <input type="gmail" value="<?php echo ($result['Gmail']); ?>" name="gmail" id="gmail" required>
+            <div class="form-group">
+                <label for="gmail">Gmail address</label>
+                <input type="email" name="gmail" id="gmail" placeholder="example@gmail.com"
+                    value="<?php echo ($professional_info['Gmail']); ?>" required>
             </div>
 
-            <div class="address" id="style">
-                <label for="address">Your address:</label>
-                <input type="text" value="<?php echo ($result['Address']); ?>" name="address" id="address" autocomplete="street-address">
+            <div class="form-group">
+                <label for="address">Your address</label>
+                <input type="text" name="address" id="address" placeholder="Enter address" autocomplete="street-address"
+                    value="<?php echo ($professional_info['Address']); ?>">
             </div>
 
-            <div class="password" id="style">
-                <label for="password">Password:</label>
-                <input type="password" value="<?php echo ($result['Password']); ?>" name="password" id="password" required>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" name="password" id="password" placeholder="Enter password"
+                    value="<?php echo ($professional_info['Password']); ?>" required>
             </div>
 
-            <div class="Cpassword" id="style">
-                <label for="Cpassword">Confirm Password:</label>
-                <input type="password" value="<?php echo ($result['Password']); ?>" name="Cpassword" id="Cpassword" required>
+            <div class="form-group">
+                <label for="Cpassword">Confirm Password</label>
+                <input type="password" name="Cpassword" id="Cpassword" placeholder="Re-enter password"
+                    value="<?php echo ($professional_info['Password']); ?>" required>
             </div>
 
-            <div class="profession">
-                <label>Choose your service:</label>
-
-                <div class="option">
-                    <input type="radio" id="plumber" name="profession" value="plumber"
-                    <?php 
-                        if ($result['Profession'] == "plumber"){
-                            echo"checked";
+            <div class="form-group">
+                <label for="profession">Choose profession</label>
+                <select name="profession_id" id="profession" required>
+                    <option value="">Select Profession</option>
+                    <?php
+                    if ($result && $result->num_rows > 0) {
+                        while ($row = $result->fetch_assoc()) {
+                            // Compare the profession ID from user with the profession table ID
+                            if ($row['profession_id'] == $professional_info['Profession']) {
+                                $selected = 'selected';
+                            } else {
+                                $selected = '';
+                            }
+                            ?>
+                            <option value="<?php echo $row['profession_id']; ?>" <?php echo $selected; ?>>
+                                <?php echo htmlspecialchars($row['profession_name']); ?>
+                            </option>
+                            <?php
                         }
-                    ?>>
-                    <label for="plumber">Plumber</label>
-                </div>
-
-                <div class="option">
-                    <input type="radio" id="electrician" name="profession" value="electrician"
-                    <?php 
-                        if ($result['Profession'] == "electrician"){
-                            echo"checked";
-                        }
-                    ?>>
-                    <label for="electrician">Electrician</label>
-                </div>
-
-                <div class="option">
-                    <input type="radio" id="cleaner" name="profession" value="cleaner"
-                    <?php 
-                        if ($result['Profession'] == "cleaner"){
-                            echo"checked";
-                        }
-                    ?>>
-                    <label for="cleaner">Cleaner</label>
-                </div>
-
-                <div class="option">
-                    <input type="radio" id="painter" name="profession" value="painter"
-                    <?php 
-                        if ($result['Profession'] == "painter"){
-                            echo"checked";
-                        }
-                    ?>>
-                    <label for="painter">Painter</label>
-                </div>
-                
-                <div class="option">
-                    <input type="radio" id="computer-technician" name="profession" value="computer-technician"
-                    <?php 
-                        if ($result['Profession'] == "computer-technician"){
-                            echo"checked";
-                        }
-                    ?>>
-                    <label for="computer-technician">Computer Technician</label>
-                </div>
+                    }
+                    ?>
+                </select>
             </div>
 
-            <button type="submit" name="submit">Update</button>
+
+            <div class="button-container">
+                <button type="submit" name="submit">Update</button>
+            </div>
+
+            <input type="hidden" name="role" value="professional">
+
         </div>
     </form>
 
-<script src="../assets/js/professionalregister.js"></script>
+    <script src="../assets/js/professionalregister.js"></script>
 </body>
-
-</html>

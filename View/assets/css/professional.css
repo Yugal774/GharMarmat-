@@ -100,8 +100,44 @@ e.professional-table td i {
     text-decoration:none;
 }
 
+/* Pagination Container */
+.pagination {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-top: 20px;
+    gap: 5px;
+}
 
-/* ===== Responsive ===== */
+/* Pagination Links */
+.pagination a {
+    display: block;
+    padding: 8px 12px;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    color: #333;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+}
+
+/* Hover Effect */
+.pagination a:hover {
+    background-color: #007bff;
+    color: #fff;
+    border-color: #007bff;
+}
+
+/* Active Page */
+.pagination a.active {
+    background-color: #007bff;
+    color: #fff;
+    border-color: #007bff;
+    font-weight: bold;
+    cursor: default;
+}
+
+
 @media (max-width: 768px) {
     .user-container {
         margin-left: 0;

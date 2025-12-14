@@ -121,19 +121,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
 
     } else {
 
-        $sql = "UPDATE professional_register SET
-                    Name='$name',
-                    Contact='$contact',
-                    Gmail='$gmail',
-                    Address='$address',
-                    Profession='$profession'";
+        $sql = "UPDATE users SET
+            Name='$name',
+            Contact='$contact',
+            Gmail='$gmail',
+            Address='$address',
+            Profession='$profession'";
 
         if (!empty($password)) {
             $password = password_hash($password, PASSWORD_DEFAULT);
             $sql .= ", Password='$password'";
         }
 
-        $sql .= " WHERE id='$id'";
+        $sql .= " WHERE Id='$id'";
 
         if ($conn->query($sql) === TRUE) {
             echo "<script>

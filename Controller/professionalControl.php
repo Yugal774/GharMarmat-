@@ -1,13 +1,21 @@
 <?php
-// Use absolute path to avoid confusion
-$base_path = dirname(__DIR__); // Gets the GharMarmat directory
+$base_path = dirname(__DIR__); // GharMarmat directory
 include $base_path . '/includes/dbconnect.php';
 
-// SQL query
-$sql = "SELECT id, name, contact, gmail, address, profession FROM professional_register"; 
+$sql = "SELECT 
+            u.Id,
+            u.Name,
+            u.Contact,
+            u.Gmail,
+            u.Address,
+            p.profession_name
+        FROM users u
+        LEFT JOIN profession p
+        ON u.Profession = p.profession_id
+        WHERE u.Role = 'professional'";
+
 $result = $conn->query($sql);
 
-// store data in array
 $professionals = [];
 
 if ($result && $result->num_rows > 0) {
