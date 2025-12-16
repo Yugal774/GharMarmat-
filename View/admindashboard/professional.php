@@ -119,7 +119,7 @@ $total_pages = ceil($total_users / $limit);
                 </tbody>
             </table>
 
-            //for pagination//
+            
             <div class="pagination">
                 <?php if ($page > 1): ?>
                     <a href="?page=<?php echo $page - 1; ?>">&laquo; Prev</a>

@@ -3,29 +3,18 @@
     width: 100vw;
     background-color: blue;
 }
-/* For Container */
+
 .user-container {
     margin-left: 18vw;
     padding: 2rem;
     font-family: Arial, sans-serif;
 }
 
-/* Page Top*/
 .page-top {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 1.5rem;
-}
-
-.user-icon p{
-    font-size: 1.7rem;
-    margin: 0;
-}
-
-.user-icon i{
-    font-size: 1.7rem;
-    margin: 0;
 }
 
 .user-icon {
@@ -36,12 +25,17 @@
     font-size: 1.1rem;
 }
 
+.user-icon p,
+.user-icon i {
+    font-size: 1.7rem;
+    margin: 0;
+}
+
 .page-title p {
     font-size: 1.3rem;
     font-weight: bold;
 }
 
-/* Content Top (Search, Status, Add Button) */
 .content-top {
     display: flex;
     justify-content: space-between;
@@ -68,12 +62,10 @@
     font-weight: bold;
 }
 
-/* User Table */
 .user-table table {
     width: 100%;
     border-collapse: collapse;
     background-color: #fff;
-    font-family: Arial, sans-serif;
 }
 
 .user-table th,
@@ -88,19 +80,51 @@
     font-weight: bold;
 }
 
-.edit a {
-    text-decoration:none;
-}
-
 .user-table tbody tr:hover {
     background-color: #f1f1f1;
 }
 
-e.user-table td i {
+.user-table td i {
     margin-right: 0.5rem;
 }
 
-/* ===== Responsive ===== */
+.edit a {
+    text-decoration: none;
+}
+
+.pagination {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-top: 20px;
+    gap: 5px;
+}
+
+.pagination a {
+    display: block;
+    padding: 8px 12px;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    color: #333;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+}
+
+.pagination a:hover {
+    background-color: #007bff;
+    color: #fff;
+    border-color: #007bff;
+}
+
+.pagination a.active {
+    background-color: #007bff;
+    color: #fff;
+    border-color: #007bff;
+    font-weight: bold;
+    cursor: default;
+}
+
 @media (max-width: 768px) {
     .user-container {
         margin-left: 0;

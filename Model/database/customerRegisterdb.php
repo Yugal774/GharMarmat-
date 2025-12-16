@@ -1,5 +1,4 @@
 <?php
-
 include '../../includes/dbconnect.php';
 
 $name = $email = $password = $confirmpassword = "";
@@ -9,21 +8,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['register_btn'])) {
 
     $id = $_POST['id'] ?? '';
 
-    //Getting input from user
     $name = trim($_POST['fullname']);
     $gmail = trim($_POST['email']);
-    $password = trim($_POS`T['password']);
+    $password = trim($_POST['password']);
     $cpassword = trim($_POST['confirmpassword']);
     $role = $_POST['role'];
 
-    // Name validation 
     if ($name == "") {
         $errors[] = "Please enter your name.";
     } elseif (strlen($name) < 3) {
         $errors[] = "Name is too short.";
     }
 
-    // Gmail validation
     if ($gmail == "") {
         $errors[] = "Please enter your Gmail ID.";
     } elseif (!filter_var($gmail, FILTER_VALIDATE_EMAIL)) {
@@ -32,9 +28,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['register_btn'])) {
         $errors[] = "Email must be a Gmail address!";
     }
 
-    // Password validation
     if (empty($id)) {
-        //for new professional
         if ($password == "") {
             $errors[] = "Please enter a password.";
         }
@@ -56,8 +50,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['register_btn'])) {
         if (!preg_match("/[\W]/", $password)) {
             $errors[] = "Password must contain at least one special character!";
         }
-
-        // Confirm password
         if ($cpassword == "") {
             $errors[] = "Please enter confirm password.";
         } elseif ($cpassword != $password) {
@@ -65,24 +57,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['register_btn'])) {
         }
     }
 
-    // inform the error
     if (!empty($errors)) {
         foreach ($errors as $error) {
-            echo "<script>alert('Error: " . $error . "');</script>";
+            echo "<script>alert('Error: $error');</script>";
         }
         exit;
     }
 
-    //For insertion of new customer
     if (empty($id)) {
 
-        $check_sql = "SELECT * FROM users WHERE Gmail='$gmail' ";
+        $check_sql = "SELECT * FROM users WHERE Gmail='$gmail'";
         $check_result = $conn->query($check_sql);
 
         if ($check_result && $check_result->num_rows > 0) {
             echo "<script>
-            alert('User with this Gmail already exists.');
-            window.location.href='../../View/users/customerRegister.php';
+                alert('User with this Gmail already exists.');
+                window.location.href='../../View/users/customerRegister.php';
             </script>";
             exit;
         }
@@ -90,41 +80,38 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['register_btn'])) {
         $password = password_hash($password, PASSWORD_DEFAULT);
 
         $sql = "INSERT INTO users (Name, Contact, Gmail, Address, Password, Profession, Role)
-        VALUES ('$name', NULL, '$gmail', NULL, '$password', NULL, '$role')";
+                VALUES ('$name', NULL, '$gmail', NULL, '$password', NULL, '$role')";
 
         if ($conn->query($sql) === TRUE) {
             echo "<script>
-            alert('Id created successfully');
-            window.location.href='../../View/public/index.php';
+                alert('Id created successfully');
+                window.location.href='../../View/public/index.php';
             </script>";
         } else {
-            echo "<script>alert('Error: " . $conn->error . "');</script>";
+            echo "<script>alert('Error: {$conn->error}');</script>";
         }
 
     } else {
 
-        $sql = "UPDATE customer_register SET
-                    name='$name',
-                    email='$gmail'";
+        $sql = "UPDATE users SET Name='$name', Gmail='$gmail'";
 
         if (!empty($password)) {
             $password = password_hash($password, PASSWORD_DEFAULT);
             $sql .= ", Password='$password'";
         }
 
-        $sql .= " WHERE id='$id'";
+        $sql .= " WHERE Id='$id'";
 
         if ($conn->query($sql) === TRUE) {
             echo "<script>
-            alert('Id updated successfully');
-            window.location.href='../../View/admindashboard/customer.php';
+                alert('Id updated successfully');
+                window.location.href='../../View/admindashboard/customer.php';
             </script>";
         } else {
-            echo "<script>alert('Error: " . $conn->error . "');</script>";
+            echo "<script>alert('Error: {$conn->error}');</script>";
         }
     }
 
     $conn->close();
 }
-
 ?>
