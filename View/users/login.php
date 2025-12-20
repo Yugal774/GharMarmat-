@@ -12,7 +12,7 @@
     <div class="container">
         <div class="form-box">
             <header>Login</header>
-            <form action="../../Controller/loginControl.php" method="POST" onsubmit="return formvalidation()">
+            <form action="../../Controller/loginControl.php" method="POST" onsubmit="return formvalidation()" autocomplete="off">
                 <div class="field-input">
                     <label for="gmail">Email </label>
                     <input type="text" name="gmail" id="gmail" placeholder="Enter full name" required>

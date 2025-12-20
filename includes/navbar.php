@@ -29,7 +29,7 @@
                     </li>
                     <li class="auth-link">
                         <ul><a href="../users/login.php"><i class="fa-solid fa-user"></i>Login</a></ul>
-                        <ul><a href="../users/registerType.php">Register</a></ul>
+                        <ul><a href="../users/registerType.php" onclick="return confirm('Are you sure you want to logout?');">Register</a></ul>
                     </li>
                 </div>
             </div>
