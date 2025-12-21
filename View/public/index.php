@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css"
-        integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../assets/css/style.css">
@@ -31,7 +30,6 @@
                         <ul><a href="../users/login.php"><i class="fa-solid fa-user"></i>Login</a></ul>
                         <ul><a href="../users/registerType.php">Register</a></ul>
                     </li>
-
                 </div>
             </div>
         </nav>
@@ -41,53 +39,32 @@
         <section class="hero">
             <div class="info">
                 <h1>Your Trusted Partner <br>for Home Services</h1>
-                <h2>Book skilled/trusted Plumber Electrician Painter Cleaner & Computer Technician online </p>
-                    <div id="book" class="hi">
-                        <a href="#services">Book Now</a>
-                    </div>
+                <h2>Book skilled/trusted Plumber, Electrician, Painter, Cleaner & Computer Technician online</h2>
+                <div id="book" class="hi">
+                    <a href="#services">Book Now</a>
+                </div>
             </div>
         </section>
+
+        <!-- Dynamic Services Section -->
+        <?php
+        include('../../includes/dbconnect.php');
+
+        // Fetch all professions
+        $professionQuery = "SELECT * FROM profession";
+        $professionResult = mysqli_query($conn, $professionQuery);
+        ?>
 
         <p id="sev-section">Services</p>
         <section class="services">
-            <div class="service">
-                <div class="img" id="plumber"> </div>
-                <P>Plumber</P>
-                <div id="book">
-                    <a href="">Book Now</a>
+            <?php while ($profession = mysqli_fetch_assoc($professionResult)) { ?>
+                <div class="service-container">
+                    <h3><?php echo $profession['profession_name']; ?></h3>
                 </div>
-            </div>
-            <div class="service">
-                <div class="img" id="electrician"> </div>
-                <P>Electrician</P>
-                <div id="book">
-                    <a href="">Book Now</a>
-                </div>
-            </div>
-            <div class="service">
-                <div class="img" id="cleaner"> </div>
-                <P>Cleaner</P>
-                <div id="book">
-                    <a href="">Book Now</a>
-                </div>
-            </div>
-            <div class="service">
-                <div class="img" id="painter"> </div>
-                <P>Painter</P>
-                <div id="book">
-                    <a href="">Book Now</a>
-                </div>
-            </div>
-            <div class="service">
-                <div class="img" id="com-technician"></div>
-                <P>Computer Technician</P>
-                <div id="book">
-                    <a href="">Book Now</a>
-                </div>
-            </div>
-            </div>
+            <?php } ?>
         </section>
 
+        <!-- Working Hours Section -->
         <section class="working-hours">
             <h2>Working Hours</h2>
             <ul>
@@ -103,40 +80,36 @@
             <a href="#" class="book-now">Book Now</a>
         </section>
 
+        <!-- FAQ Section -->
         <section class="faq-section">
             <h2>Frequently Asked Questions</h2>
-
             <details class="faq-item">
                 <summary>1. What is Gharmarmat all about?</summary>
                 <p>→ ..............................................</p>
             </details>
-
             <details class="faq-item">
                 <summary>2. How can I schedule a service with Gharmarmat?</summary>
                 <p>→ .....................................</p>
             </details>
-
             <details class="faq-item">
                 <summary>3. What kinds of services does Gharmarmat provide?</summary>
                 <p>→ ....................................</p>
             </details>
-
             <details class="faq-item">
                 <summary>4. How does Gharmarmat choose its service professionals?</summary>
                 <p>→ U.............................................</p>
             </details>
-
             <details class="faq-item">
                 <summary>5. In which areas does Gharmarmat operate?</summary>
                 <p>→ ....................................</p>
             </details>
-
             <details class="faq-item">
                 <summary>6. How much do Gharmarmat’s services cost?</summary>
                 <p>→ ......................................</p>
             </details>
         </section>
 
+        <!-- Footer Section -->
         <footer class="foot">
             <div class="container">
                 <div class="row">

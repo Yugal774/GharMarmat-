@@ -60,7 +60,7 @@
   cursor: pointer;
 }
 
-/* Responsive */
+/* Responsive Navbar */
 @media screen and (max-width: 768px) {
   .auth-link {
     position: absolute;
@@ -129,7 +129,7 @@ main {
   margin-left: 12vw;
 }
 
-/*service section*/
+/* Services Section */
 #sev-section {
   color: #26CC00;
   font-size: 2rem;
@@ -141,88 +141,67 @@ main {
 }
 
 .services {
-  height: auto;
-  width: 100%;
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
-  align-items: center;
-  padding-bottom: 3rem;
+  gap: 2rem;
+  padding: 2rem 1rem;
 }
 
-.services .service {
-  height: 40vh;
-  width: 17vw;
-  background-color: #ECECEC;
-  margin: 0 1vw;
+.service-container {
+  background-color: #f5f5f5;
+  width: 250px;
   border-radius: 1rem;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-}
-
-.img {
-  height: 26vh;
-  width: 17vw;
-  border-top-left-radius: 1rem;
-  border-top-right-radius: 1rem;
-}
-
-.service p {
-  color: #26CC00;
-  font-family: sans-serif;
-  font-size: 1.2rem;
-  font-weight: 600;
-  padding-top: 1vh;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   text-align: center;
+  padding: 1.5rem 1rem;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-#plumber {
-  background: url(../images/plumber\ photo.jpeg);
-  background-size: cover;
+.service-container:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
 }
 
-#electrician {
-  background: url(../images/electrician\ photo.jpeg);
-  background-size: cover;
+.service-container h3 {
+  font-size: 1.4rem;
+  color: #0a930a;
+  margin-bottom: 1rem;
+  font-weight: 700;
+  font-family: sans-serif;
 }
 
-#cleaner {
-  background: url(../images/cleaner\ photo.jpeg);
-  background-size: cover;
-}
-
-#painter {
-  background: url(../images/painter\ photo.jpeg);
-  background-size: cover;
-}
-
-#com-technician {
-  background: url(../images/technician\ photo.jpg);
-  background-size: cover;
-}
-
-#book {
-  height: 6vh;
-  width: 17vw;
-  border-radius: 0.5rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-#book a {
-  height: 5vh;
-  width: 12vw;
-  color: white;
+.service-container a {
+  display: inline-block;
+  margin-top: 1rem;
+  padding: 0.5rem 1.2rem;
   background-color: #26CC00;
+  color: white;
+  font-weight: 600;
   border-radius: 0.5rem;
-  font-size: 1.2rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: 500;
   text-decoration: none;
+  transition: 0.3s ease;
 }
 
-/*working-hours section*/
+.service-container a:hover {
+  background-color: #1FA800;
+  transform: scale(1.05);
+}
+
+/* Responsive Services */
+@media screen and (max-width: 768px) {
+  .services {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .service-container {
+    width: 80%;
+    margin-bottom: 1.5rem;
+  }
+}
+
+/* Working Hours Section */
 .working-hours {
   width: 90%;
   background-color: #ffffff;
@@ -263,7 +242,6 @@ main {
   font-weight: 700;
   color: #FF0000;
 }
-
 
 .book-now {
   display: inline-block;
@@ -308,7 +286,7 @@ main {
   }
 }
 
-/*frequeltly asked questions-section*/
+/* FAQ Section */
 .faq-section {
   width: 90%;
   margin: 5vh auto;
@@ -345,7 +323,7 @@ main {
 }
 
 .faq-item summary::-webkit-details-marker {
-  display: none;/
+  display: none;
 }
 
 .faq-item summary:hover {
@@ -378,7 +356,7 @@ main {
   }
 }
 
-/*footer*/
+/* Footer */
 .foot {
   background: #0d0d0d;
   color: #f0f0f0;
