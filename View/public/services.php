@@ -9,11 +9,9 @@
 </head>
 
 <body>
-
-    <header>
-        <h1>Professional Home Services</h1>
-        <p>Trusted experts at your doorstep</p>
-    </header>
+    <?php
+        include '../../includes/servicenav.php';
+    ?>
 
     <main>
         <div class="book-header">
@@ -26,11 +24,13 @@
                     <h3>Electrician</h3>
                     <p>Electrical repairs and installations.</p>
                     <ul>
-                        <li>Wiring & Fixtures</li>
-                        <li>Electrical Repairs</li>
-                        <li>Safety Inspections</li>
+                        <li>Installation Services</li>
+                        <li>Repair and Fixing</li>
+                        <li>wiring and Rewiring</li>
+                        <li>Electrical Troubleshooting</li>
+                        <li>Electrical Maintenance</li>
                     </ul>
-                    <a href="#">Book Now</a>
+                    <a href="electrician.php">Book Now</a>
                 </article>
 
                 <article>

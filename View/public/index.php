@@ -46,7 +46,6 @@
                         <a href="#services">Book Now</a>
                     </div>
             </div>
-
         </section>
 
         <p id="sev-section">Services</p>

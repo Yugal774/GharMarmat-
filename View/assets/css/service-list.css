@@ -1,0 +1,157 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background: #f4f6f9;
+}
+
+.dashboard {
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* center cards */
+}
+
+/* Header section */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 2rem;
+}
+
+.add-btn {
+    background: rgb(55, 55, 195);
+    color: #fff;
+    text-decoration: none; 
+    padding: 0.5rem 0.9rem;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.add-btn:hover {
+    background: blue;
+}
+
+/* Service section */
+.service-card {
+    height: auto;
+    width: 95%;
+    background: #fff;
+    padding: 1rem;
+    border-radius: 0.8rem;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 0.2rem 0.5rem rgba(0,0,0,0.1);
+}
+
+/* Service header */
+.service-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 0.8rem;
+}
+
+.service-header h4 {
+    flex: 1;
+    font-size: 1.1rem;
+}
+
+/* Service edit and delete part */
+.service-actions a,
+.service-actions button {
+    display: inline-block;
+    padding: 0.35rem 0.7rem;
+    border-radius: 0.45rem;
+    text-decoration: none;
+    color: #fff;
+    font-size: 0.85rem;
+    margin-left: 0.4rem;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.service-actions a.edit,
+.service-actions button.edit { 
+    background: #28a745; 
+}
+.service-actions a.edit:hover,
+.service-actions button.edit:hover { 
+    background: #218838; 
+}
+.service-actions a.delete,
+.service-actions button.delete { 
+    background: #dc3545; 
+}
+.service-actions a.delete:hover,
+.service-actions button.delete:hover { 
+    background: #c82333; 
+}
+
+/* Work table */
+.sub-services-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 0.4rem;
+    table-layout: fixed; /* equal column widths */
+}
+
+.sub-services-table th,
+.sub-services-table td {
+    border: 1px solid #ccc;
+    padding: 0.4rem 0.7rem;
+    text-align: left; 
+    font-size: 0.9rem;
+    word-wrap: break-word;
+    width: 33.33%; 
+}
+
+.sub-services-table th { background: #f0f0f0; }
+
+/* SUB-SERVICE ACTION BUTTONS */
+.sub-services-table .edit,
+.sub-services-table .delete {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.8rem;
+    border-radius: 0.35rem;
+    border: none;
+    cursor: pointer;
+    color: #fff;
+    text-decoration: none;
+}
+
+.sub-services-table .edit { 
+    background: #28a745; 
+}
+.sub-services-table .edit:hover {
+    background: #218838; 
+}
+.sub-services-table .delete { 
+    background: #dc3545; 
+}
+.sub-services-table .delete:hover { 
+    background: #c82333; 
+}
+
+/* Add work button */
+.add-sub-service {
+    display: inline-block;
+    padding: 0.25rem 0.7rem;
+    border-radius: 0.45rem;
+    background: rgb(55, 55, 195);
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    font-size: 0.8rem;
+    text-decoration: none;
+    transition: 0.3s;
+    margin-top: 0.4rem;
+}
+
+.add-sub-service:hover { background: blue; }
