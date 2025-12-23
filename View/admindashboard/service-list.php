@@ -66,8 +66,8 @@ $professionResult = mysqli_query($conn, $professionQuery);
                                     <td><?php echo number_format($work['work_price'], 2); ?></td>
                                     <td>
                                         <?php
-                                        echo '<a href="edit-work.php?id=' . $work['id'] . '" class="edit">Edit</a> ';
-                                        echo '<a href="delete-work.php?id=' . $work['id'] . '" class="delete">Delete</a>';
+                                        echo '<a href="edit-work.php?id=' . $work['work_id'] . '" class="edit">Edit</a> ';
+                                        echo '<a href="delete-work.php?id=' . $work['work_id'] . '" class="delete">Delete</a>';
                                         ?>
                                     </td>
                                 </tr>

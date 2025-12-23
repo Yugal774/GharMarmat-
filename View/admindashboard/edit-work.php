@@ -7,7 +7,7 @@ if (!isset($_GET['id'])) exit("No work selected!");
 $work_id = intval($_GET['id']);
 
 /* Fetch work */
-$workQuery = "SELECT * FROM work WHERE Id = $work_id";
+$workQuery = "SELECT * FROM work WHERE work_id = $work_id";
 $workResult = mysqli_query($conn, $workQuery);
 
 if (mysqli_num_rows($workResult) == 0) exit("Work not found!");
@@ -28,7 +28,7 @@ if (isset($_POST['update_work'])) {
                    SET work_name='$work_name',
                        work_price='$work_price',
                        profession_id='$profession_id'
-                   WHERE Id=$work_id";
+                   WHERE work_id=$work_id";
 
         if (mysqli_query($conn, $update)) {
             header("Location: service-list.php");

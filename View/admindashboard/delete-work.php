@@ -9,7 +9,7 @@ $work_id = intval($_GET['id']);
 
 // Delete work when clicking confirm
 if (isset($_POST['delete_work'])) {
-    $delete = "DELETE FROM work WHERE Id = $work_id";
+    $delete = "DELETE FROM work WHERE work_id = $work_id";
     if (mysqli_query($conn, $delete)) {
         header("Location: service-list.php");
         exit;

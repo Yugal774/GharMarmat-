@@ -22,7 +22,7 @@
     $profession = mysqli_fetch_assoc($professionResult);
 
     //work part
-    $workQuery = "SELECT work_name, work_price FROM work WHERE profession_id = $professionId";
+    $workQuery = "SELECT work_id, work_name, work_price FROM work WHERE profession_id = $professionId";
     $workResult = mysqli_query($conn,$workQuery);
     ?>
 
@@ -33,8 +33,7 @@
     <div class="work">
         <h4><?php echo $work['work_name']; ?></h4>
         <p>NPR <?php echo $work['work_price']; ?>/hour</p>
-        <a href="book.php?profession_id=<?php echo $professionId; ?>&work=<?php echo urlencode($work['work_name']); ?>">Book</a>
-    </div>
+        <a href="booking-form.php?profession_id=<?php echo $professionId; ?>&work_id=<?php echo $work['work_id']; ?>">Book</a>    </div>
 <?php } ?>
 </div>
 </body>
