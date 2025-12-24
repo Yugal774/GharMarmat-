@@ -87,6 +87,6 @@ document.addEventListener("DOMContentLoaded", function () {
             return;
         }
 
-        alert("Booking submitted successfully!");
+        // alert("Booking submitted successfully!");
     });
 });

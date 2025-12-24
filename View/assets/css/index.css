@@ -122,11 +122,15 @@ main {
   font-size: 1.4rem;
   color: #AEEEEE;
   margin-left: 16vh;
+  margin-bottom: 2rem;
 }
 
-.hi {
-  margin-top: 5vh;
-  margin-left: 12vw;
+.book-from-hero a {
+  color: white;
+  background-color: #26CC00;
+  text-decoration: none;
+  padding: 0.8rem 2rem;
+  border-radius: 1rem;
 }
 
 /* Services Section */

@@ -27,9 +27,18 @@
                         <ul><a href="contactus.php">Contact Us</a></ul>
                     </li>
                     <li class="auth-link">
-                        <ul><a href="../users/login.php"><i class="fa-solid fa-user"></i>Login</a></ul>
-                        <ul><a href="../users/registerType.php">Register</a></ul>
+                        <?php
+                        session_start();
+
+                        if (!isset($_SESSION['username']) || $_SESSION['role'] !== 'customer') {
+                            echo '<ul><a href="../users/login.php"><i class="fa-solid fa-user"></i> Login</a></ul>';
+                            echo '<ul><a href="../users/registerType.php">Register</a></ul>';
+                        } else {
+                            echo '<ul><a href="/GharMarmat/View/userDashboard/userdashboard.php"><i class="fa-solid fa-user"></i> ' . htmlspecialchars($_SESSION['username']) . '</a></ul>';
+                        }
+                        ?>
                     </li>
+
                 </div>
             </div>
         </nav>
@@ -40,8 +49,14 @@
             <div class="info">
                 <h1>Your Trusted Partner <br>for Home Services</h1>
                 <h2>Book skilled/trusted Plumber, Electrician, Painter, Cleaner & Computer Technician online</h2>
-                <div id="book" class="hi">
-                    <a href="#services">Book Now</a>
+                <div class="book-from-hero">
+                    <?php
+                    if (!isset($_SESSION['username']) || $_SESSION['role'] !== 'customer') {
+                        echo '<a href="services.php">See more</a>';
+                    } else {
+                        echo '<a href="services.php">Book now</a>';
+                    }
+                    ?>
                 </div>
             </div>
         </section>
@@ -77,7 +92,15 @@
                 <li>Sat – 9 AM to 5 PM</li>
             </ul>
             <p class="emergency">Services are available now.</p>
-            <a href="#" class="book-now">Book Now</a>
+
+            <?php
+            if (!isset($_SESSION['username']) || $_SESSION['role'] !== 'customer') {
+                echo '<a href="services.php" class="book-now">See more</a>';
+            } else {
+                echo '<a href="services.php" class="book-now">Book now</a>';
+            }
+            ?>
+
         </section>
 
         <!-- FAQ Section -->

@@ -1,0 +1,97 @@
+body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background: #f4f6f8;
+        padding: 20px;
+    }
+
+    .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+    }
+
+    .header h1 {
+        font-size: 24px;
+        color: #111827;
+    }
+
+    .header button {
+        padding: 10px 15px;
+        background: #ef4444;
+        color: #fff;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+
+    .header button a{
+        color: white;
+        text-decoration: none;
+        font-weight: 600;
+    }
+
+    .header button:hover {
+        background: #b91c1c;
+    }
+
+    .table-container {
+        overflow-x: auto;
+        background: #fff;
+        border-radius: 12px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        padding: 20px;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    th, td {
+        padding: 15px;
+        text-align: left;
+    }
+
+    th {
+        background: #f3f4f6;
+        color: #374151;
+    }
+
+    tr:nth-child(even) {
+        background: #f9fafb;
+    }
+
+    tr:hover {
+        background: #e5e7eb;
+    }
+
+    .status-completed {
+        color: green;
+        font-weight: bold;
+    }
+
+    .status-pending {
+        color: orange;
+        font-weight: bold;
+    }
+
+    .status-cancelled {
+        color: red;
+        font-weight: bold;
+    }
+
+    .cancel-btn {
+        padding: 5px 10px;
+        background: #f59e0b;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+
+    .cancel-btn:hover {
+        background: #b45309;
+    }

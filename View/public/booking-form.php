@@ -1,3 +1,7 @@
+<?php
+$profession_id = $_GET['profession_id'] ?? 0;
+$work_id = $_GET['work_id'] ?? 0;
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -13,11 +17,15 @@
     <div class="booking-container">
         <h2>Book a Home Service</h2>
 
-        <form action="" >
+        <form action="../../Model/database/serviceBooking.php" method="POST">
 
-            <!-- User details inserting section -->
+            <!-- User Details Section -->
             <div class="section">
                 <h3>User Details</h3>
+
+                <!-- Hidden inputs for profession_id and work_id -->
+                <input type="hidden" name="profession_id" value="<?php echo htmlspecialchars($profession_id); ?>">
+                <input type="hidden" name="work_id" value="<?php echo htmlspecialchars($work_id); ?>">
 
                 <div class="form-group">
                     <label for="fullname">Full Name</label>
@@ -56,8 +64,9 @@
 
                 <div class="form-group">
                     <label for="timeSlot">Time slot (1 Hour)</label>
-                    <select id="timeSlot" name="timeSlot"required>
+                    <select id="timeSlot" name="timeSlot" required>
                         <option value="">Select Time Slot</option>
+                        <!-- You can populate options dynamically via JS -->
                     </select>
                 </div>
 
@@ -73,10 +82,11 @@
             </div>
 
             <div class="book-btn">
-                <button type="submit" class="btn">Book Now</button>
+                <button type="submit" class="btn" name="book_btn">Book Now</button>
             </div>
         </form>
     </div>
+
     <script src="../assets/js/booking-form.js"></script>
 </body>
 
