@@ -21,18 +21,19 @@ if (isset($_POST['login'])) {
         $row = mysqli_fetch_assoc($data);
         $hashed_password = trim($row['Password']);
         $role = trim($row['Role']);
+        $gmail = trim($row['Gmail']);
 
         if (password_verify($password, $hashed_password)) {
 
             // Password correct, set session
-            $_SESSION['username'] = $row['Gmail'];
+            $_SESSION['username'] = $gmail;
             $_SESSION['role'] = $role;
 
             // Redirect based on role
             if ($role == 'admin') {
                 header('Location: ../View/admindashboard/dashboard.php');
             } elseif ($role == 'customer') {
-                header('Location: ../View/userDashboard/userdashboard.php');
+                header('Location: ../View/public/index.php');
             } elseif ($role == 'professional') {
                 header('Location: ../View/professionalDashboard/professionaldashboard.php');
             } else {

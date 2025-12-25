@@ -1,3 +1,12 @@
+<?php
+session_start();
+
+if (!isset($_SESSION['username']) || $_SESSION['role'] !== 'customer') {
+    header('location:../users/login.php');
+    exit;
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 

@@ -21,6 +21,16 @@
             </div>
 
             <div class="form-group">
+                <label for="contact">Contact</label>
+                <input type="text" name="contact" id="contact" placeholder="Enter your contact number">
+            </div>
+
+            <div class="form-group">
+                <label for="address">Address</label>
+                <input type="text" name="address" id="address" placeholder="Enter your address">
+            </div>
+
+            <div class="form-group">
                 <label for="email">Email</label>
                 <input type="email" name="email" id="email" placeholder="Enter your email">
             </div>

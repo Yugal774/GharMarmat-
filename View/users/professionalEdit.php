@@ -52,18 +52,6 @@ $result = $conn->query(query: $sql);
             </div>
 
             <div class="form-group">
-                <label for="password">Password</label>
-                <input type="password" name="password" id="password" placeholder="Enter password"
-                    value="<?php echo ($professional_info['Password']); ?>" required>
-            </div>
-
-            <div class="form-group">
-                <label for="Cpassword">Confirm Password</label>
-                <input type="password" name="Cpassword" id="Cpassword" placeholder="Re-enter password"
-                    value="<?php echo ($professional_info['Password']); ?>" required>
-            </div>
-
-            <div class="form-group">
                 <label for="profession">Choose profession</label>
                 <select name="profession_id" id="profession" required>
                     <option value="">Select Profession</option>

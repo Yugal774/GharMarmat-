@@ -7,21 +7,22 @@
 
 body {
     height: 100vh;
-    background-color: rgb(248, 245, 245);
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
 .container {
-    width: 31vw;
+    height: auto;
+    width: 30vw;
+    background-color: rgb(248, 245, 245);
+    box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.2);
 }
 
 form {
     background-color: white;
     padding: 2rem 3rem;
     border-radius: 1rem;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
 
 header {
@@ -42,24 +43,33 @@ label {
     font-weight: 500;
 }
 
+/* Uniform styling for all fields */
 input[type="text"],
 input[type="email"],
-input[type="password"] {
+input[type="password"],
+textarea {
     width: 100%;
     padding: 0.6rem 0.7rem;
-    border: 1px solid #ccc;
+    border: 0.0625rem solid #ccc; /* 1px in rem */
     border-radius: 0.5rem;
     font-size: 0.95rem;
+    font-family: inherit;
+    background-color: white;
+}
+
+textarea {
+    height: 2.5rem; 
+    resize: none; 
 }
 
 .button-container {
     text-align: center;
-    margin: 1.2rem;
+    margin: 1.2rem 0;
 }
 
 button {
     width: 70%;
-    padding: 0.5rem;
+    padding: 0.5rem 0;
     background-color: rgb(60, 60, 191);
     border: none;
     border-radius: 0.5rem;
@@ -87,4 +97,20 @@ button:hover {
 
 .small-text a:hover {
     text-decoration: underline;
+}
+
+/* Responsive tweak for smaller screens */
+@media screen and (max-width: 768px) {
+    .container {
+        width: 80vw;
+        padding: 1rem;
+    }
+
+    form {
+        padding: 1.5rem 1.5rem;
+    }
+
+    button {
+        width: 90%;
+    }
 }
