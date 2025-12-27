@@ -1,102 +1,95 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: Arial, sans-serif;
-}
-
+/* Page Layout */
 body {
-    background: #f4f6f8;
+    background-color: #f4f6f9;
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
+    font-family: sans-serif;
+    margin: 0;
+    box-sizing: border-box;
 }
 
-/* Container styling */
-.booking-container {
-    background: #ffffff;
-    width: 30vw;
-    margin-top: 0.5vh;
-    padding: 1.6rem;
-    border-radius: 0.65rem;
-    box-shadow: 0 0.6rem 1.6rem rgba(0, 0, 0, 0.1);
+/* Form Container */
+.form-container {
+    background-color: #fff;
+    width: 90%;
+    max-width: 30rem;
+    padding: 2rem;
+    border-radius: 1rem;
+    box-shadow: 0 0.5rem 1.25rem rgba(0, 0, 0, 0.1);
 }
 
-/* Title styling */
-.booking-container h2 {
+.form-container h2 {
     text-align: center;
+    font-size: 1.75rem;
     margin-bottom: 1.5rem;
-    color: #333;
-    font-size: 1.5rem;
+    color: #222;
 }
 
-/* Section Styling */
-.section {
-    margin-bottom: 1.6rem;
-    padding: 1rem;
-    border: 0.06rem solid #ddd;
-    border-radius: 0.5rem;
-    background-color: #f9f9f9;
-}
-
-.section h3 {
-    margin-bottom: 1rem;
-    color: #007bff;
-    font-size: 1rem;
-    border-bottom: 0.06rem solid #ddd;
-    padding-bottom: 0.3rem;
-}
-
-/* Form styling */
+/* Form Group */
 .form-group {
+    display: flex;
+    flex-direction: column;
     margin-bottom: 1rem;
 }
 
 .form-group label {
-    display: block;
-    margin-bottom: 0.4rem;
-    font-size: 0.9rem;
-    color: #555;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+    font-size: 1rem;
+    color: #333;
 }
 
-.form-group input,
+/* Inputs, Selects, Textareas */
+.form-group input[type="date"],
+.form-group input[type="text"],
 .form-group select,
 .form-group textarea {
+    padding: 0.5rem;
+    font-size: 1rem;
+    border-radius: 0.5rem;
+    border: 1px solid #ccc;
     width: 100%;
-    padding: 0.65rem;
-    border: 0.06rem solid #ccc;
-    border-radius: 0.4rem;
-    font-size: 0.875rem;
 }
 
+/* Textareas same height as inputs */
 .form-group textarea {
+    font-family: sans-serif;
+    height: 2.5rem;
     resize: none;
+}
+
+/* Readonly fields */
+.form-group input[readonly] {
+    background-color: #e9ecef;
+    cursor: not-allowed;
 }
 
 .form-group input:focus,
 .form-group select:focus,
 .form-group textarea:focus {
+    border-color: #2563eb;
     outline: none;
-    border-color: #007bff;
 }
 
-/* Button */
-.book-btn{
-    display: flex;
-    justify-content: center;
+/* Submit Button */
+#book {
+    margin-top: 2.5rem;
 }
-.btn {
-    width: 80%;
-    padding: 0.7rem;
-    background: #007bff;
-    color: #fff;
-    border: none;
-    border-radius: 0.4rem;
+
+#book button {
+    width: 100%;
+    padding: 0.75rem;
     font-size: 1rem;
+    font-weight: 600;
+    color: #fff;
+    background-color: #2563eb;
+    border: none;
+    border-radius: 0.5rem;
     cursor: pointer;
 }
 
-.btn:hover {
-    background: #0056b3;
+#book button:hover {
+    background-color: #1e4ed8;
 }
