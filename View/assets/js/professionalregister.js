@@ -13,7 +13,7 @@ function formValidate() {
         return false;
     }
 
-    // Contact Validation (Nepali 10-digit number)
+    // Contact Validation 
     const contactPattern = /^(98|97)\d{8}$/;
     if (!contactPattern.test(contact)) {
         alert("Contact number must be 10 digits and start with 97 or 98.");

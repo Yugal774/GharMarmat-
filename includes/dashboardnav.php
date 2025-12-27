@@ -38,9 +38,14 @@
                     <li><i class="fa-solid fa-briefcase"></i>Services</li>
                 </a>
 
-                <a href="\GharMarmat\View\users\logout.php" onclick="return confirm('Are you sure you want to logout?');">
-                    <li id="log-out"><i class="fa-solid fa-right-from-bracket"></i> Log Out</li>
+                <a href="\GharMarmat\View\admindashboard\service-time.php">
+                    <li><i class="fa-solid fa-clock"></i> Service Time</li>
                 </a>
+
+                <a href="\GharMarmat\View\users\logout.php"
+                    onclick="return confirm('Are you sure you want to logout?');">
+                    <li id="log-out"><i class="fa-solid fa-right-from-bracket"></i> Log Out</li>
+                </a>     
             </ul>
         </aside>
 

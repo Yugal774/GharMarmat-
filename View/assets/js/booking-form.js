@@ -1,92 +1,77 @@
+// booking-form.js
+
+function formValidate() {
+    const dateInput = document.getElementById("date");
+    const timeCategory = document.getElementById("timeCategory");
+    const timeSlot = document.getElementById("timeSlot");
+    const servAddress = document.querySelector("textarea[name='servAddress']");
+    const note = document.querySelector("textarea[name='note']");
+
+    let errors = [];
+
+    // Date validation
+    if (!dateInput.value) {
+        errors.push("Please select a date.");
+    } else {
+        const selectedDate = new Date(dateInput.value);
+        const today = new Date();
+        today.setHours(0, 0, 0, 0); // ignore time
+        if (selectedDate < today) {
+            errors.push("Date cannot be in the past.");
+        }
+    }
+
+    // Time category validation
+    if (!timeCategory.value) {
+        errors.push("Please select a time category.");
+    }
+
+    // Time slot validation
+    if (!timeSlot.value) {
+        errors.push("Please select a time slot.");
+    }
+
+    // Service address validation
+    if (!servAddress.value.trim() || servAddress.value.trim().length < 10) {
+        errors.push("Enter complete address @example(House No. 123, Ward No. 5, Green Park Colony, Kathmandu, Nepal) ");
+    }
+
+    // Notes validation
+    if (note.value.trim().length > 200) {
+        errors.push("Notes cannot exceed 200 characters.");
+    }
+
+    // Show errors if any
+    if (errors.length > 0) {
+        alert(errors.join("\n"));
+        return false;
+    }
+
+    return true; // form is valid
+}
+
+// Populate time slots dynamically based on selected category
 document.addEventListener("DOMContentLoaded", function () {
-    const form = document.querySelector("form");
     const timeCategory = document.getElementById("timeCategory");
     const timeSlot = document.getElementById("timeSlot");
 
-    // Time slots based on category
     const slots = {
-        morning: ["7:00 - 8:00", "8:00 - 9:00", "9:00 - 10:00"],
-        afternoon: ["12:00 - 1:00", "1:00 - 2:00", "2:00 - 3:00"],
-        evening: ["5:00 - 6:00", "6:00 - 7:00", "7:00 - 8:00"]
+        morning: ["7:00 - 8:00", "8:00 - 9:00", "9:00 - 10:00", "10:00 - 11:00", "11:00 - 12:00"],
+        afternoon: ["12:00 - 1:00", "1:00 - 2:00", "2:00 - 3:00", "3:00 - 4:00", "4:00 - 5:00"],
+        evening: ["5:00 - 6:00", "6:00 - 7:00", "7:00 - 8:00", "8:00 - 9:00"]
     };
 
-    // Populate time slots
     timeCategory.addEventListener("change", function () {
-        timeSlot.innerHTML = '<option value="">Select Time Slot</option>';
+        const selectedCategory = this.value;
+        timeSlot.innerHTML = '<option value="">Select Time Slot</option>'; // reset
 
-        if (slots[this.value]) {
-            slots[this.value].forEach(slot => {
+        if (selectedCategory && slots[selectedCategory]) {
+            slots[selectedCategory].forEach(slot => {
                 const option = document.createElement("option");
                 option.value = slot;
                 option.textContent = slot;
                 timeSlot.appendChild(option);
             });
         }
-    });
-
-    // Form validation
-    form.addEventListener("submit", function (e) {
-        const name = document.getElementById("name").value.trim();
-        const phone = document.getElementById("phone").value.trim();
-        const email = document.getElementById("email").value.trim();
-        const date = document.getElementById("date").value;
-        const address = document.querySelector("textarea[name='servAddress']").value.trim();
-
-        const phoneRegex = /^(97|98)\d{8}$/;
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-        if (name.length < 3) {
-            alert("Full name must be at least 3 characters.");
-            e.preventDefault();
-            return;
-        }
-
-        if (!phoneRegex.test(phone)) {
-            alert("Enter a valid phone number (98XXXXXXXX).");
-            e.preventDefault();
-            return;
-        }
-
-        if (!emailRegex.test(email)) {
-            alert("Enter a valid email address.");
-            e.preventDefault();
-            return;
-        }
-
-        if (!date) {
-            alert("Please select a date.");
-            e.preventDefault();
-            return;
-        }
-
-        const selectedDate = new Date(date);
-        const today = new Date();
-        today.setHours(0,0,0,0);
-
-        if (selectedDate < today) {
-            alert("Date cannot be in the past.");
-            e.preventDefault();
-            return;
-        }
-
-        if (!timeCategory.value) {
-            alert("Please select a time category.");
-            e.preventDefault();
-            return;
-        }
-
-        if (!timeSlot.value) {
-            alert("Please select a time slot.");
-            e.preventDefault();
-            return;
-        }
-
-        if (address.length < 5) {
-            alert("Please enter a valid service address.");
-            e.preventDefault();
-            return;
-        }
-
-        // alert("Booking submitted successfully!");
     });
 });
