@@ -8,8 +8,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css"
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="../assets/css/style.css">
-    <link rel="stylesheet" href="../assets/css/index.css">
+    <link rel="stylesheet" href="/GharMarmat/View/assets/css/style.css">
+    <link rel="stylesheet" href="/GharMarmat/View/assets/css/index.css">
 </head>
 
 <body>
@@ -30,15 +30,23 @@
                         <?php
                         session_start();
 
-                        if (!isset($_SESSION['username']) || $_SESSION['role'] !== 'customer') {
+                        if (isset($_SESSION['role'])) {
+                            // User is logged in
+                            $username = htmlspecialchars($_SESSION['username']);
+
+                            if ($_SESSION['role'] === 'customer') {
+                                echo '<ul><a href="/GharMarmat/View/userDashboard/userdashboard.php"><i class="fa-solid fa-user"></i> ' . $username . '</a></ul>';
+                            } elseif ($_SESSION['role'] === 'professional') {
+                                echo '<ul><a href="\GharMarmat\View\public\professionalDashboard\professionaldashboard.php"><i class="fa-solid fa-user"></i> ' . $username . '</a></ul>';
+                            } else {
+                                echo '<ul><a href="#"><i class="fa-solid fa-user"></i> ' . $username . '</a></ul>';
+                            }
+                        } else {
                             echo '<ul><a href="../users/login.php"><i class="fa-solid fa-user"></i> Login</a></ul>';
                             echo '<ul><a href="../users/registerType.php">Register</a></ul>';
-                        } else {
-                            echo '<ul><a href="/GharMarmat/View/userDashboard/userdashboard.php"><i class="fa-solid fa-user"></i> ' . htmlspecialchars($_SESSION['username']) . '</a></ul>';
                         }
                         ?>
                     </li>
-
                 </div>
             </div>
         </nav>
@@ -83,13 +91,13 @@
         <section class="working-hours">
             <h2>Working Hours</h2>
             <ul>
-                <li>Sun – 9 AM to 5 PM</li>
-                <li>Mon – 9 AM to 5 PM</li>
-                <li>Tue – 9 AM to 5 PM</li>
-                <li>Wed – 9 AM to 5 PM</li>
-                <li>Thu – 9 AM to 5 PM</li>
-                <li>Fri – 9 AM to 5 PM</li>
-                <li>Sat – 9 AM to 5 PM</li>
+                <li>Sun – 6 AM to 8 PM</li>
+                <li>Mon – 6 AM to 8 PM</li>
+                <li>Tue – 6 AM to 8 PM</li>
+                <li>Wed – 6 AM to 8 PM</li>
+                <li>Thu – 6 AM to 8 PM</li>
+                <li>Fri – 6 AM to 8 PM</li>
+                <li>Sat – 6 AM to 8 PM</li>
             </ul>
             <p class="emergency">Services are available now.</p>
 
@@ -108,27 +116,27 @@
             <h2>Frequently Asked Questions</h2>
             <details class="faq-item">
                 <summary>1. What is Gharmarmat all about?</summary>
-                <p>→ ..............................................</p>
+                <p></p>
             </details>
             <details class="faq-item">
                 <summary>2. How can I schedule a service with Gharmarmat?</summary>
-                <p>→ .....................................</p>
+                <p></p>
             </details>
             <details class="faq-item">
                 <summary>3. What kinds of services does Gharmarmat provide?</summary>
-                <p>→ ....................................</p>
+                <p></p>
             </details>
             <details class="faq-item">
                 <summary>4. How does Gharmarmat choose its service professionals?</summary>
-                <p>→ U.............................................</p>
+                <p></p>
             </details>
             <details class="faq-item">
                 <summary>5. In which areas does Gharmarmat operate?</summary>
-                <p>→ ....................................</p>
+                <p></p>
             </details>
             <details class="faq-item">
                 <summary>6. How much do Gharmarmat’s services cost?</summary>
-                <p>→ ......................................</p>
+                <p></p>
             </details>
         </section>
 
@@ -139,10 +147,10 @@
                     <div class="whatdiv">
                         <h5>What We Fix</h5>
                         <ul>
-                            <li>Cleaning Services</li>
                             <li>Plumbing & Drainage</li>
                             <li>Electrician & Wiring</li>
                             <li>Painter Services</li>
+                            <li>Cleaner</li>
                             <li>Computer Technician</li>
                         </ul>
                     </div>
@@ -150,7 +158,6 @@
                         <h5>Who We Serve</h5>
                         <ul>
                             <li>Homeowners</li>
-                            <li>Rental Properties</li>
                             <li>Businesses & Offices</li>
                             <li>Restaurants & Cafes</li>
                             <li>Local Shops</li>

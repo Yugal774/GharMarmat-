@@ -12,7 +12,7 @@
 
 <section class="contact-wrapper">
     
-    <div class="left-section">
+    <div class="contact-section">
         <h2 class="left-title">Get In Touch With Us Now!</h2>
 
         <div class="info-grid">
@@ -20,7 +20,7 @@
             <div class="info-box">
                 <i class="fas fa-phone"></i>
                 <h3>Phone Number</h3>
-                <p>+977 9800000000</p>
+                <p>+977 9862123069</p>
             </div>
 
             <div class="info-box">
@@ -33,41 +33,17 @@
             <div class="info-box">
                 <i class="fab fa-whatsapp"></i>
                 <h3>WhatsApp</h3>
-                <p>+9779800000000</p>
+                <p>+977 9808150263</p>
             </div>
 
             <div class="info-box">
                 <i class="fas fa-clock"></i>
                 <h3>Working Hours</h3>
                 <p>Sunday – Saturday</p>
-                <p>09:00 AM – 05:00 PM</p>
+                <p>06:00 AM – 08:00 PM</p>
             </div>
 
         </div>
-    </div>
-
-    
-    <div class="right-section">
-        <h2 class="right-title">Contact Us</h2>
-
-        <form class="contact-form">
-
-            <div class="two-input">
-                <input type="text" placeholder="First Name *" required>
-                <input type="text" placeholder="Last Name">
-            </div>
-
-            <div class="two-input">
-                <input type="text" placeholder="Mobile Number *" required>
-                <input type="email" placeholder="Email ID *" required>
-            </div>
-
-            <textarea placeholder="Message"></textarea>
-
-            <button type="submit" class="submit-btn">
-                Submit <i class="fas fa-paper-plane"></i>
-            </button>
-        </form>
     </div>
 
 </section>

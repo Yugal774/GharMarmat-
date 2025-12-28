@@ -1,4 +1,3 @@
-/* Reset */
 * {
     margin: 0;
     padding: 0;
@@ -6,8 +5,8 @@
     font-family: Arial, sans-serif;
 }
 
-/* Prevent any sliding */
-html, body {
+html,
+body {
     width: 100%;
     height: 100%;
     overflow-x: hidden;
@@ -26,24 +25,19 @@ body {
     padding: 20px 40px;
     background: #ffffff;
     border-bottom: 1px solid #ddd;
-    border-radius: 8px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05); 
 }
 
-/* Title */
 .header h1 {
     font-size: 24px;
     color: #333;
 }
 
-/* Logout button */
 .header button {
-    background-color: #26CC00; 
+    background-color: #1d4ed8;
     border: none;
     padding: 10px 16px;
     border-radius: 5px;
     cursor: pointer;
-    transition: background 0.3s;
 }
 
 .header button a {
@@ -53,16 +47,16 @@ body {
 }
 
 .header button:hover {
-    background-color: #1d4ed8; 
+    background-color: #2563eb;
 }
 
 /* Table wrapper */
 .table-container {
     padding: 30px 40px;
     width: 100%;
-    overflow-x: auto;   
+    overflow-x: auto;
+}
 
-/* Table */
 table {
     width: 100%;
     border-collapse: collapse;
@@ -72,20 +66,20 @@ table {
 }
 
 thead {
-    background-color:#26CC00; 
+    background-color: #1d4ed8;
 }
 
 thead th {
     color: #fff;
-    padding: 14px;
+    padding: 12px;
     text-align: left;
-    font-size: 14px;
+    font-size: 13px;
 }
 
 tbody td {
-    padding: 14px;
+    padding: 12px;
     border-bottom: 1px solid #eee;
-    font-size: 14px;
+    font-size: 13px;
     color: #333;
 }
 
@@ -95,7 +89,7 @@ tbody tr:hover {
 
 /* Status styles */
 .status-pending {
-    color: #f59e0b;
+    color: #e67e22;
     font-weight: bold;
 }
 
@@ -105,22 +99,39 @@ tbody tr:hover {
 }
 
 .status-cancelled {
-    color: #ef4444;
+    color: #c0392b;
     font-weight: bold;
 }
 
-/* Cancel button */
-.cancel-btn {
-    background-color: #3b82f6; 
+/* Action button */
+.action-btn {
+    background-color: #1d4ed8;
     border: none;
-    padding: 8px 14px;
+    padding: 6px 12px;
     color: #fff;
     border-radius: 4px;
     cursor: pointer;
-    transition: background 0.3s;
+    transition: 0.3s;
 }
 
-.cancel-btn:hover {
-    background-color: #1d4ed8; 
+.action-btn:hover {
+    background-color: #2563eb;
 }
 
+@media (max-width: 1024px) {
+    table {
+        min-width: 1000px;
+    }
+}
+
+@media (max-width: 768px) {
+    .header {
+        flex-direction: column;
+        gap: 10px;
+        text-align: center;
+    }
+
+    .table-container {
+        padding: 20px;
+    }
+}

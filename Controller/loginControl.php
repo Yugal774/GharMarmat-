@@ -35,9 +35,8 @@ if (isset($_POST['login'])) {
             } elseif ($role == 'customer') {
                 header('Location: ../View/public/index.php');
             } elseif ($role == 'professional') {
-                header('Location: ../View/professionalDashboard/professionaldashboard.php');
+                header('Location: ../View/public/index.php');
             } else {
-                // Unknown role
                 echo $login_failed;
             }
             exit;
