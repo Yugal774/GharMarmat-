@@ -14,8 +14,10 @@ body {
 .sidebar .header {
     height: 10vh;
     background-color: #556655;
-    padding: 1.1rem 0;
-    text-align: center;
+    display: flex;
+    align-items: center;
+    padding: 0 0 0 1rem;
+    text-align: left;
 }
 
 .sidebar .header h3 {
@@ -39,7 +41,7 @@ body {
     padding: 0.9rem 1rem;
     font-size: 1.2rem;
     color: #111;
-    font-weight: 500;
+    font-weight: 600;
 }
 
 .sidebar ul a{
@@ -47,7 +49,7 @@ body {
 }
 
 .sidebar ul li i {
-    font-size: 1.1rem;
+    font-size: 1.2rem;
     color: #222;
 }
 
