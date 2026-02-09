@@ -1,44 +1,29 @@
-.dashboard{
-    height: 100%;
-    width: 100vw;
-    background-color: blue;
-}
 /* For Container */
 .professional-container {
     margin-left: 18vw;
-    padding: 2rem;
     font-family: Arial, sans-serif;
 }
 
 /* Page Top*/
 .page-top {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 1.5rem;
-}
-
-.professional-icon p{
-    font-size: 1.7rem;
-    margin: 0;
-}
-
-.professional-icon i{
-    font-size: 1.7rem;
-    margin: 0;
-}
-
-.professional-icon {
+    height: 10vh;
+    width: 100%;
+    background-color: #e9c758;
+    box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     display: flex;
     align-items: center;
-    gap: 0.5rem;
-    font-weight: bold;
-    font-size: 1.1rem;
+    padding-left: 2rem;
 }
 
-.page-title p {
-    font-size: 1.3rem;
-    font-weight: bold;
+.page-top p{
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin: 0;
+    padding: 0;;
+}
+
+.professional-content{
+    padding: 2rem;
 }
 
 /* Content Top (Search, Status, Add Button) */
@@ -46,7 +31,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 1rem;
+    margin-bottom: 1.5rem;
     flex-wrap: wrap;
     gap: 1rem;
 }
@@ -60,10 +45,11 @@
 }
 
 .add-professional button {
+    color: white;
     padding: 0.4rem 0.8rem;
     border: none;
     border-radius: 0.3rem;
-    background-color: #e9c758;
+    background: rgb(55, 55, 195);
     cursor: pointer;
     font-weight: bold;
 }
@@ -123,14 +109,14 @@ e.professional-table td i {
 
 /* Hover Effect */
 .pagination a:hover {
-    background-color: #007bff;
+    background: rgb(55, 55, 195);
     color: #fff;
     border-color: #007bff;
 }
 
 /* Active Page */
 .pagination a.active {
-    background-color: #007bff;
+    background: rgb(55, 55, 195);
     color: #fff;
     border-color: #007bff;
     font-weight: bold;

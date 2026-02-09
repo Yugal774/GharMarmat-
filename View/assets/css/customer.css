@@ -12,6 +12,7 @@
     align-items: center;
     padding-left: 2rem;
 }
+
 .page-top p{
     font-size: 1.5rem;
     font-weight: 600;
@@ -41,10 +42,11 @@
 }
 
 .add-user button {
+    color: white;
     padding: 0.4rem 0.8rem;
     border: none;
     border-radius: 0.3rem;
-    background-color: #e9c758;
+    background: rgb(55, 55, 195);
     cursor: pointer;
     font-weight: bold;
 }
@@ -99,13 +101,13 @@
 }
 
 .pagination a:hover {
-    background-color: #007bff;
+    background: rgb(55, 55, 195);
     color: #fff;
     border-color: #007bff;
 }
 
 .pagination a.active {
-    background-color: #007bff;
+    background: rgb(55, 55, 195);
     color: #fff;
     border-color: #007bff;
     font-weight: bold;

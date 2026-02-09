@@ -9,20 +9,41 @@ body {
     background: #f4f6f9;
 }
 
-.dashboard {
-    padding: 2rem;
+.service-list-container{
+    margin-left: 18vw;
+    font-family: Arial, sans-serif;
+}
+
+/* Page Top*/
+.page-top {
+    height: 10vh;
+    width: 100%;
+    background-color: #e9c758;
+    box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     display: flex;
-    flex-direction: column;
-    align-items: center; /* center cards */
+    align-items: center;
+    padding-left: 2rem;
+    position: fixed;
+}
+
+.page-top p{
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin: 0;
+    padding: 0;
+}
+
+.service-list-content{
+    padding: 14vh 2rem 2rem 2rem;
 }
 
 /* Header section */
 .header {
     display: flex;
-    justify-content: space-between;
     align-items: center;
     width: 100%;
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
+    padding: 0;
 }
 
 .add-btn {
@@ -42,7 +63,6 @@ body {
 /* Service section */
 .service-card {
     height: auto;
-    width: 95%;
     background: #fff;
     padding: 1rem;
     border-radius: 0.8rem;
@@ -79,19 +99,19 @@ body {
 
 .service-actions a.edit,
 .service-actions button.edit { 
-    background: #28a745; 
+    background-color: #d7b133;
 }
 .service-actions a.edit:hover,
 .service-actions button.edit:hover { 
-    background: #218838; 
+    background-color: #d6af2e;
 }
 .service-actions a.delete,
 .service-actions button.delete { 
-    background: #dc3545; 
+    background-color: #d7b133;
 }
 .service-actions a.delete:hover,
 .service-actions button.delete:hover { 
-    background: #c82333; 
+    background-color: #d6af2e;
 }
 
 /* Work table */
@@ -127,16 +147,16 @@ body {
 }
 
 .sub-services-table .edit { 
-    background: #28a745; 
+    background-color: #d7b133;
 }
 .sub-services-table .edit:hover {
-    background: #218838; 
+    background-color: #d6af2e;
 }
 .sub-services-table .delete { 
-    background: #dc3545; 
+    background-color: #d7b133;
 }
 .sub-services-table .delete:hover { 
-    background: #c82333; 
+    background-color: #d6af2e;
 }
 
 /* Add work button */
