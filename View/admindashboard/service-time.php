@@ -52,99 +52,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <head>
     <meta charset="UTF-8">
     <title>Add Time Slot</title>
-    <style>
-        * {
-            box-sizing: border-box;
-            font-family: "Segoe UI", Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-        }
-
-        html,
-        body {
-            height: 100%;
-            background: #f4f6f9;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            width: 50vw;
-            max-height: 90vh;
-        }
-
-        .card {
-            background: #fff;
-            padding: 2rem;
-            border-radius: 1rem;
-            box-shadow: 0 1vh 2vh rgba(0, 0, 0, 0.08);
-            width: 100%;
-            max-width: 35vw;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .card h2 {
-            margin-bottom: 1rem;
-            font-size: 1.5rem;
-            text-align: center;
-        }
-
-        label {
-            font-size: 1rem;
-            color: #444;
-            margin-bottom: 0.5rem;
-        }
-
-        input,
-        select {
-            width: 100%;
-            padding: 0.8rem;
-            margin-bottom: 1rem;
-            border-radius: 0.5rem;
-            border: 0.1rem solid #ccc;
-            font-size: 1rem;
-        }
-
-        input[readonly] {
-            background: #f1f5f9;
-            cursor: not-allowed;
-        }
-
-        button {
-            width: 100%;
-            padding: 1rem;
-            background: #2563eb;
-            color: #fff;
-            border: none;
-            border-radius: 0.7rem;
-            cursor: pointer;
-            font-size: 1rem;
-            margin-top: 0.5rem;
-        }
-
-        button:hover {
-            background: #1e4ed8;
-        }
-
-        .message {
-            text-align: center;
-            color: green;
-            margin-bottom: 1rem;
-        }
-    </style>
+    <link rel="stylesheet" href="../assets/css/service-time.css">
+    <link rel="stylesheet" href="../assets/css/style.css">
 </head>
 
 <body>
+    <div>
+        <?php include '../../includes/dashboardnav.php'; ?>
+    </div>
 
-    <div class="container">
+    <div class="service-time-container">
+        <div class="page-top">
+            <p>Add Time Slot (1 Hour Only)</p>
+        </div>
+
         <div class="card">
-            <h2>Add Time Slot (1 Hour Only)</h2>
-
             <?php if ($message): ?>
                 <div class="message"><?php echo $message; ?></div>
             <?php endif; ?>
@@ -166,13 +88,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     ?>
                 </select>
 
-                <label>Start Time</label>
-                <input type="time" id="startTime" name="start_time" required>
+                <div class="time-field">
+                    <label for="startTime">Start Time</label>
+                    <input type="time" id="startTime" name="start_time" required>
+                </div>
 
-                <label>End Time</label>
-                <input type="time" id="endTime" name="end_time" readonly required>
+                <div class="time-field">
+                    <label for="endTime">End Time</label>
+                    <input type="time" id="endTime" name="end_time" readonly required>
+                </div>
 
-                <button type="submit">Add Time Slot</button>
+                <div class="time-field">
+                    <button type="submit">Add Time Slot</button>
+                </div>
+
             </form>
         </div>
     </div>

@@ -1,0 +1,105 @@
+.service-time-container{
+    margin-left: 18vw;
+}
+
+/* Page Top*/
+.page-top {
+    height: 10vh;
+    width: 100%;
+    background-color: #e9c758;
+    box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    display: flex;
+    align-items: center;
+    padding-left: 2rem;
+}
+
+.page-top p{
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin: 0;
+    padding: 0;;
+}
+
+.card {
+    background: #fff;
+    border-radius: 1rem;
+    box-shadow: 0 1vh 2vh rgba(0, 0, 0, 0.08);
+    width: 74vw;
+    display: flex;
+    flex-direction: column;
+    margin: 2vw 4vw;
+    padding: 2rem 3rem;
+}
+
+label {
+    font-size: 1rem;
+    color: #161616;
+    margin-bottom: 0.5rem;
+}
+
+input,
+select {
+    width: 100%;
+    padding: 0.8rem;
+    border-radius: 0.5rem;
+    border: 0.1rem solid #ccc;
+    font-size: 1rem;
+}
+
+input[readonly] {
+    background: #f1f5f9;
+    cursor: not-allowed;
+}
+
+.time-field {
+    display: flex;
+    flex-direction: column;
+    margin: 1rem;
+}
+
+.time-field label {
+    font-size: 1rem;
+    color: #444;
+    margin-bottom: 0.5rem;
+}
+
+.time-field input {
+    width: 100%;
+    padding: 0.8rem;
+    border-radius: 1rem;
+    border: 0.1rem solid #ccc;
+    font-size: 1rem;
+}
+
+.time-field input[readonly] {
+    background: #f1f5f9;
+    cursor: not-allowed;
+}
+
+.time-field button {
+    width: 60%;
+    background: #2563eb;
+    color: #fff;
+    border: none;
+    border-radius: 1rem;
+    cursor: pointer;
+    font-size: 1rem;
+    margin-top: 1rem;
+    padding: 0.5rem;
+    align-self: center;
+}
+
+.time-field button:hover {
+    background: #1e4ed8;
+}
+
+.message {
+    height: 3vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: red;
+    margin-bottom: 1rem;
+}
