@@ -103,3 +103,84 @@ input[readonly] {
     color: red;
     margin-bottom: 1rem;
 }
+.section-divider {
+    margin: 50px 0;
+}
+
+.section-title {
+    margin-bottom: 25px;
+}
+
+.slots-wrapper {
+    display: flex;
+    gap: 25px;
+    flex-wrap: wrap;
+}
+
+.slot-card {
+    flex: 1;
+    min-width: 300px;
+    background: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    padding: 18px;
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.slot-count {
+    background: #007bff;
+    color: #fff;
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 13px;
+}
+
+.slot-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.slot-table thead {
+    background: #f8f9fa;
+}
+
+.slot-table th,
+.slot-table td {
+    padding: 8px;
+    text-align: left;
+}
+
+.slot-table tr {
+    border-bottom: 1px solid #eee;
+}
+
+.action-cell {
+    text-align: center;
+}
+
+.delete-btn {
+    background: #dc3545;
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 13px;
+    transition: 0.2s;
+}
+
+.delete-btn:hover {
+    opacity: 0.8;
+}
+
+.no-data {
+    padding: 15px;
+    text-align: center;
+    color: #888;
+}
