@@ -91,27 +91,66 @@
             <label for="service_name">Service Name:</label>
             <input type="text" name="service_name" id="service_name" placeholder="Enter service name" required>
             <button type="submit" name="add_service">Add Service</button>
-        </form>
+            
+            <?php
+            include '../../includes/dbconnect.php';
 
-        <?php
-        if (isset($_POST['add_service'])) {
-            $service_name = trim(mysqli_real_escape_string($conn, $_POST['service_name']));
+            if (isset($_POST['add_service'])) {
 
-            if (!empty($service_name)) {
-                // Insert into profession table
-                $query = "INSERT INTO profession (profession_name) VALUES ('$service_name')";
-                if (mysqli_query($conn, $query)) {
-                    echo "<p class='success'>Service added successfully!</p>";
-                    header("refresh:2;url=service-list.php");
+                $service_name = trim($_POST['service_name']);
+
+                if (empty($service_name)) {
+                    echo "<script>
+                alert('Please enter a service name.');
+                window.history.back();
+              </script>";
                     exit;
-                } else {
-                    echo "<p class='error'>Error: " . mysqli_error($conn) . "</p>";
                 }
-            } else {
-                echo "<p class='error'>Please enter a service name.</p>";
+
+                $service_name = mysqli_real_escape_string($conn, $service_name);
+
+                // Check duplicate (case-insensitive)
+                $checkQuery = "SELECT COUNT(*) AS total 
+                   FROM profession 
+                   WHERE LOWER(profession_name) = LOWER('$service_name')";
+
+                $checkResult = mysqli_query($conn, $checkQuery);
+                $row = mysqli_fetch_assoc($checkResult);
+
+                if ($row['total'] > 0) {
+
+                    echo "<script>
+                alert('Service already exists!');
+                window.history.back();
+              </script>";
+                    exit;
+
+                } else {
+
+                    $insertQuery = "INSERT INTO profession (profession_name) 
+                        VALUES ('$service_name')";
+
+                    if (mysqli_query($conn, $insertQuery)) {
+
+                        echo "<script>
+                    alert('Service added successfully!');
+                    window.location.href='service-list.php';
+                  </script>";
+                        exit;
+
+                    } else {
+
+                        echo "<script>
+                    alert('Error: " . mysqli_error($conn) . "');
+                    window.history.back();
+                  </script>";
+                        exit;
+                    }
+                }
             }
-        }
-        ?>
+            ?>
+
+
     </div>
 
 </body>
