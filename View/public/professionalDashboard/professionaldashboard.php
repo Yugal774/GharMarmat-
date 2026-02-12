@@ -42,7 +42,7 @@ $booking_res = mysqli_query($conn, "SELECT * FROM bookings WHERE status='pending
 <?php include_once $_SERVER['DOCUMENT_ROOT'] . '/GharMarmat/includes/navbar.php'; ?>
 
 <div class="header">
-    <h1>My Bookings</h1>
+    <h1>My Bookings requests</h1>
     <button onclick="logout()">
         <a href="\GharMarmat\View\users\logout.php">Log Out</a>
     </button>

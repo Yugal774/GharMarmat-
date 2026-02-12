@@ -14,7 +14,7 @@ include '../../includes/dbconnect.php';
 
 // Pagination setup
 $limit = 10; // customers per page
-$page = isset($_GET['page']) && $_GET['page'] > 0 ? (int)$_GET['page'] : 1;
+$page = isset($_GET['page']) && $_GET['page'] > 0 ? (int) $_GET['page'] : 1;
 $offset = ($page - 1) * $limit;
 
 // Fetch customers
@@ -52,94 +52,89 @@ $total_pages = ceil($total_customers / $limit);
 </head>
 
 <body>
-<div>
-    <?php include '../../includes/dashboardnav.php'; ?>
-</div>
+    <div>
+        <?php include '../../includes/dashboardnav.php'; ?>
+    </div>
 
-<div class="user-container">
-    <div class="page-top">
-        <div class="user-icon">
-            <i class="fa-solid fa-circle-user"></i>
-            <p>Customer</p>
-        </div>
-        <div class="page-title">
+    <div class="user-container">
+        <div class="page-top">
             <p>Customer management</p>
         </div>
-    </div>
 
-    <div class="user-content">
-        <div class="content-top">
-            <div class="search">
-                <input type="search" placeholder="🔍 Search">
+        <div class="user-content">
+            <div class="content-top">
+                <div class="search">
+                    <input type="search" placeholder="🔍 Search">
+                </div>
+
+                <div class="status">
+                    <select>
+                        <option disabled selected>Status</option>
+                        <option>Active</option>
+                        <option>Blocked</option>
+                    </select>
+                </div>
+
+                <div class="add-user">
+                    <button onclick="window.location.href='../../View/users/customerRegister.php'">
+                        <i class="fa-solid fa-plus"></i> Add Customer
+                    </button>
+                </div>
             </div>
 
-            <div class="status">
-                <select>
-                    <option disabled selected>Status</option>
-                    <option>Active</option>
-                    <option>Blocked</option>
-                </select>
-            </div>
-
-            <div class="add-user">
-                <button onclick="window.location.href='../../View/users/customerRegister.php'">
-                    <i class="fa-solid fa-plus"></i> Add Customer
-                </button>
-            </div>
-        </div>
-
-        <div class="user-table">
-            <table>
-                <thead>
-                    <tr id="heading">
-                        <th>ID</th>
-                        <th>Full Name</th>
-                        <th>Email</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-
-                <tbody>
-                <?php $id = $offset + 1; ?>
-                <?php if (!empty($customers)): ?>
-                    <?php foreach ($customers as $customer): ?>
-                        <tr>
-                            <td><?php echo $id++; ?></td>
-                            <td><?= htmlspecialchars($customer['Name']); ?></td>
-                            <td><?= htmlspecialchars($customer['Gmail']); ?></td>
-                            <td>
-                                <a href="../users/customeredit.php?id=<?= $customer['Id']; ?>">
-                                    <i class="fa-solid fa-pen-to-square"></i> Edit
-                                </a>
-                            </td>
+            <div class="user-table">
+                <table>
+                    <thead>
+                        <tr id="heading">
+                            <th>ID</th>
+                            <th>Full Name</th>
+                            <th>Email</th>
+                            <th>Actions</th>
                         </tr>
-                    <?php endforeach; ?>
-                <?php else: ?>
-                    <tr>
-                        <td colspan="4">No customers found.</td>
-                    </tr>
-                <?php endif; ?>
-                </tbody>
-            </table>
+                    </thead>
 
-            <div class="pagination">
-                <?php if ($page > 1): ?>
-                    <a href="?page=<?= $page - 1 ?>">&laquo; Prev</a>
-                <?php endif; ?>
+                    <tbody>
+                        <?php $id = $offset + 1; ?>
+                        <?php if (!empty($customers)): ?>
+                            <?php foreach ($customers as $customer): ?>
+                                <tr>
+                                    <td><?php echo $id++; ?></td>
+                                    <td><?= htmlspecialchars($customer['Name']); ?></td>
+                                    <td><?= htmlspecialchars($customer['Gmail']); ?></td>
+                                    <td>
+                                        <a href="../users/customeredit.php?id=<?= $customer['Id']; ?>">
+                                            <i class="fa-solid fa-pen-to-square"></i> Edit
+                                        </a>
+                                    </td>
+                                </tr>
+                            <?php endforeach; ?>
+                        <?php else: ?>
+                            <tr>
+                                <td colspan="4">No customers found.</td>
+                            </tr>
+                        <?php endif; ?>
+                    </tbody>
+                </table>
 
-                <?php for ($i = 1; $i <= $total_pages; $i++): ?>
-                    <a href="?page=<?= $i ?>" class="<?= ($i == $page) ? 'active' : '' ?>">
-                        <?= $i ?>
-                    </a>
-                <?php endfor; ?>
+                <div class="pagination">
+                    <?php if ($page > 1): ?>
+                        <a href="?page=<?= $page - 1 ?>">&laquo; Prev</a>
+                    <?php endif; ?>
 
-                <?php if ($page < $total_pages): ?>
-                    <a href="?page=<?= $page + 1 ?>">Next &raquo;</a>
-                <?php endif; ?>
+                    <?php for ($i = 1; $i <= $total_pages; $i++): ?>
+                        <a href="?page=<?= $i ?>" class="<?= ($i == $page) ? 'active' : '' ?>">
+                            <?= $i ?>
+                        </a>
+                    <?php endfor; ?>
+
+                    <?php if ($page < $total_pages): ?>
+                        <a href="?page=<?= $page + 1 ?>">Next &raquo;</a>
+                    <?php endif; ?>
+                </div>
+
             </div>
-
         </div>
     </div>
-</div>
 </body>
+
 </html>

@@ -1,46 +1,34 @@
-.dashboard{
-    height: 100%;
-    width: 100vw;
-    background-color: blue;
-}
-
 .user-container {
     margin-left: 18vw;
-    padding: 2rem;
     font-family: Arial, sans-serif;
 }
 
 .page-top {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 1.5rem;
-}
-
-.user-icon {
+    height: 10vh;
+    width: 100%;
+    background-color: #e9c758;
+    box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     display: flex;
     align-items: center;
-    gap: 0.5rem;
-    font-weight: bold;
-    font-size: 1.1rem;
+    padding-left: 2rem;
 }
 
-.user-icon p,
-.user-icon i {
-    font-size: 1.7rem;
+.page-top p{
+    font-size: 1.5rem;
+    font-weight: 600;
     margin: 0;
+    padding: 0;
 }
 
-.page-title p {
-    font-size: 1.3rem;
-    font-weight: bold;
+.user-content{
+    padding: 2rem;
 }
 
 .content-top {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 1rem;
+    margin-bottom: 1.5rem;
     flex-wrap: wrap;
     gap: 1rem;
 }
@@ -54,12 +42,17 @@
 }
 
 .add-user button {
+    color: white;
     padding: 0.4rem 0.8rem;
     border: none;
     border-radius: 0.3rem;
-    background-color: #e9c758;
+    background: #2563eb;
     cursor: pointer;
     font-weight: bold;
+}
+
+.add-user button:hover {
+    background: #1e4ed8;
 }
 
 .user-table table {
@@ -112,13 +105,13 @@
 }
 
 .pagination a:hover {
-    background-color: #007bff;
+    background: #1e4ed8;
     color: #fff;
     border-color: #007bff;
 }
 
 .pagination a.active {
-    background-color: #007bff;
+    background: #2563eb;
     color: #fff;
     border-color: #007bff;
     font-weight: bold;

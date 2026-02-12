@@ -6,174 +6,186 @@ $message = "";
 // Only process if form submitted
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-    $category = trim($_POST['category']); // numeric id from select
-    $start_time = trim($_POST['start_time']);
-    $end_time = trim($_POST['end_time']);
+    // 1️⃣ Handle deletion
+    if (isset($_POST['delete_id'])) {
+        $delete_id = intval($_POST['delete_id']);
 
-    if ($category && $start_time && $end_time) {
+        // Check if there are bookings for this slot
+        $stmtCheck = $conn->prepare("SELECT COUNT(*) as count FROM bookings WHERE time_slot_id = ?");
+        $stmtCheck->bind_param("i", $delete_id);
+        $stmtCheck->execute();
+        $resultCheck = $stmtCheck->get_result();
+        $row = $resultCheck->fetch_assoc();
 
-        // Add seconds for MySQL TIME comparison
-        $start_time .= ':00';
-        $end_time .= ':00';
-
-        // Check for overlapping time slots
-        $checkQuery = "
-            SELECT * FROM time_slots 
-            WHERE time_category = $category
-            AND start_time < '$end_time'
-            AND end_time > '$start_time'
-        ";
-        $result = mysqli_query($conn, $checkQuery);
-
-        if (mysqli_num_rows($result) > 0) {
-            $message = "This time slot overlaps with an existing slot.";
+        if ($row['count'] > 0) {
+            $message = "Cannot delete this time slot. It is assigned to existing bookings.";
         } else {
-            // Insert new time slot
-            $insertQuery = "
-                INSERT INTO time_slots (time_category, start_time, end_time)
-                VALUES ($category, '$start_time', '$end_time')
-            ";
-            if (mysqli_query($conn, $insertQuery)) {
-                $message = "New time slot added sucessfully.";
+            $stmt = $conn->prepare("DELETE FROM time_slots WHERE id = ?");
+            $stmt->bind_param("i", $delete_id);
+            if ($stmt->execute()) {
+                $message = "Time slot deleted successfully.";
             } else {
-                $message = "Database error: " . mysqli_error($conn);
+                $message = "Database error: " . $stmt->error;
             }
+            $stmt->close();
         }
 
-    } else {
-        $message = "Please fill all the fields.";
+        $stmtCheck->close();
+    }
+
+    // 2️⃣ Handle adding new time slot
+    elseif (isset($_POST['category'], $_POST['start_time'], $_POST['end_time'])) {
+
+        $category = strtolower(trim($_POST['category'])); // store as lowercase
+        $start_time = trim($_POST['start_time']) . ':00';
+        $end_time = trim($_POST['end_time']) . ':00';
+
+        if ($category && $start_time && $end_time) {
+
+            // Check for overlapping time slots
+            $stmt = $conn->prepare("
+                SELECT COUNT(*) as count FROM time_slots 
+                WHERE time_category = ? 
+                AND start_time < ? 
+                AND end_time > ?
+            ");
+            $stmt->bind_param("sss", $category, $end_time, $start_time);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            $row = $result->fetch_assoc();
+
+            if ($row['count'] > 0) {
+                $message = "This time slot overlaps with an existing slot.";
+            } else {
+                // Insert new time slot
+                $insertStmt = $conn->prepare("
+                    INSERT INTO time_slots (time_category, start_time, end_time)
+                    VALUES (?, ?, ?)
+                ");
+                $insertStmt->bind_param("sss", $category, $start_time, $end_time);
+                if ($insertStmt->execute()) {
+                    $message = "New time slot added successfully.";
+                } else {
+                    $message = "Database error: " . $insertStmt->error;
+                }
+                $insertStmt->close();
+            }
+
+            $stmt->close();
+
+        } else {
+            $message = "Please fill all the fields.";
+        }
     }
 }
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <title>Add Time Slot</title>
-    <style>
-        * {
-            box-sizing: border-box;
-            font-family: "Segoe UI", Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-        }
-
-        html,
-        body {
-            height: 100%;
-            background: #f4f6f9;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            width: 50vw;
-            max-height: 90vh;
-        }
-
-        .card {
-            background: #fff;
-            padding: 2rem;
-            border-radius: 1rem;
-            box-shadow: 0 1vh 2vh rgba(0, 0, 0, 0.08);
-            width: 100%;
-            max-width: 35vw;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .card h2 {
-            margin-bottom: 1rem;
-            font-size: 1.5rem;
-            text-align: center;
-        }
-
-        label {
-            font-size: 1rem;
-            color: #444;
-            margin-bottom: 0.5rem;
-        }
-
-        input,
-        select {
-            width: 100%;
-            padding: 0.8rem;
-            margin-bottom: 1rem;
-            border-radius: 0.5rem;
-            border: 0.1rem solid #ccc;
-            font-size: 1rem;
-        }
-
-        input[readonly] {
-            background: #f1f5f9;
-            cursor: not-allowed;
-        }
-
-        button {
-            width: 100%;
-            padding: 1rem;
-            background: #2563eb;
-            color: #fff;
-            border: none;
-            border-radius: 0.7rem;
-            cursor: pointer;
-            font-size: 1rem;
-            margin-top: 0.5rem;
-        }
-
-        button:hover {
-            background: #1e4ed8;
-        }
-
-        .message {
-            text-align: center;
-            color: green;
-            margin-bottom: 1rem;
-        }
-    </style>
+    <link rel="stylesheet" href="../assets/css/service-time.css">
+    <link rel="stylesheet" href="../assets/css/style.css">
 </head>
-
 <body>
+    <?php include '../../includes/dashboardnav.php'; ?>
 
-    <div class="container">
+    <div class="service-time-container">
+        <div class="page-top">
+            <p>Add Time Slot (1 Hour Only)</p>
+        </div>
+
         <div class="card">
-            <h2>Add Time Slot (1 Hour Only)</h2>
-
             <?php if ($message): ?>
                 <div class="message"><?php echo $message; ?></div>
             <?php endif; ?>
 
+            <!-- Add Time Slot Form -->
             <form method="POST">
                 <label>Select Time Category</label>
                 <select name="category" id="category" required>
-                    <option value=""> Select Category </option>
+                    <option value="">Select Category</option>
                     <?php
-                    $query = "SELECT id, name FROM time_categories ORDER BY id ASC";
-                    $result = mysqli_query($conn, $query);
-                    if ($result && mysqli_num_rows($result) > 0) {
-                        while ($row = mysqli_fetch_assoc($result)) {
-                            echo "<option value='{$row['id']}'>{$row['name']}</option>";
-                        }
-                    } else {
-                        echo "<option value=''>No categories found</option>";
+                    $categories = ["morning", "afternoon", "evening"];
+                    foreach ($categories as $cat) {
+                        $display = ucfirst($cat);
+                        echo "<option value='{$cat}'>{$display}</option>";
                     }
                     ?>
                 </select>
 
-                <label>Start Time</label>
-                <input type="time" id="startTime" name="start_time" required>
+                <div class="time-field">
+                    <label for="startTime">Start Time</label>
+                    <input type="time" id="startTime" name="start_time" required>
+                </div>
 
-                <label>End Time</label>
-                <input type="time" id="endTime" name="end_time" readonly required>
+                <div class="time-field">
+                    <label for="endTime">End Time</label>
+                    <input type="time" id="endTime" name="end_time" readonly required>
+                </div>
 
-                <button type="submit">Add Time Slot</button>
+                <div class="time-field">
+                    <button type="submit">Add Time Slot</button>
+                </div>
             </form>
+
+            <hr class="section-divider">
+
+            <!-- Existing Time Slots -->
+            <h3 class="section-title">Existing Time Slots</h3>
+            <div class="slots-wrapper">
+                <?php
+                foreach ($categories as $catName) {
+                    $slotQuery = "SELECT id, start_time, end_time FROM time_slots WHERE time_category = ? ORDER BY start_time ASC";
+                    $stmt = $conn->prepare($slotQuery);
+                    $stmt->bind_param("s", $catName);
+                    $stmt->execute();
+                    $slotResult = $stmt->get_result();
+                    $count = $slotResult ? $slotResult->num_rows : 0;
+                ?>
+
+                <div class="slot-card">
+                    <div class="card-header">
+                        <h4><?php echo ucfirst($catName); ?></h4>
+                        <span class="slot-count"><?php echo $count; ?></span>
+                    </div>
+
+                    <table class="slot-table">
+                        <thead>
+                            <tr>
+                                <th>Start</th>
+                                <th>End</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php
+                            if ($count > 0) {
+                                while ($slot = $slotResult->fetch_assoc()) {
+                                    ?>
+                                    <tr>
+                                        <td><?php echo date('h:i A', strtotime($slot['start_time'])); ?></td>
+                                        <td><?php echo date('h:i A', strtotime($slot['end_time'])); ?></td>
+                                        <td class="action-cell">
+                                            <form method="POST" class="delete-form">
+                                                <input type="hidden" name="delete_id" value="<?php echo $slot['id']; ?>">
+                                                <button type="submit" class="delete-btn">Delete</button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                    <?php
+                                }
+                            } else {
+                                echo "<tr><td colspan='3' class='no-data'>No Slots Available</td></tr>";
+                            }
+                            ?>
+                        </tbody>
+                    </table>
+                </div>
+
+                <?php $stmt->close(); } ?>
+            </div>
         </div>
     </div>
 
@@ -182,15 +194,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         const endTime = document.getElementById("endTime");
         const category = document.getElementById("category");
 
-        // Set start time ranges based on category name
+        // Set start time ranges based on category
         category.addEventListener("change", () => {
-            const catText = category.options[category.selectedIndex].text;
+            const catText = category.value;
             switch (catText) {
-                case "Morning":
+                case "morning":
                     startTime.min = "06:00"; startTime.max = "11:59"; startTime.value = "06:00"; break;
-                case "Afternoon":
+                case "afternoon":
                     startTime.min = "12:00"; startTime.max = "16:59"; startTime.value = "12:00"; break;
-                case "Evening":
+                case "evening":
                     startTime.min = "17:00"; startTime.max = "20:59"; startTime.value = "17:00"; break;
             }
             calculateEndTime();
@@ -209,7 +221,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         startTime.addEventListener("change", calculateEndTime);
         category.dispatchEvent(new Event("change"));
     </script>
-
 </body>
-
 </html>
