@@ -11,6 +11,9 @@
     display: flex;
     align-items: center;
     padding-left: 2rem;
+    position: sticky;
+    top: 0;
+    z-index: 5;
 }
 
 .page-top p{
@@ -29,6 +32,11 @@
     flex-direction: column;
     margin: 2vw 4vw;
     padding: 2rem 3rem;
+    margin-bottom: 4vw;
+}
+
+form{
+    margin-top: 1rem;
 }
 
 label {

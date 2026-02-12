@@ -82,24 +82,24 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Add Time Slot</title>
     <link rel="stylesheet" href="../assets/css/service-time.css">
     <link rel="stylesheet" href="../assets/css/style.css">
 </head>
+
 <body>
     <?php include '../../includes/dashboardnav.php'; ?>
 
     <div class="service-time-container">
         <div class="page-top">
-            <p>Add Time Slot (1 Hour Only)</p>
+            <p>Service Time Management</p>
         </div>
 
         <div class="card">
-            <?php if ($message): ?>
-                <div class="message"><?php echo $message; ?></div>
-            <?php endif; ?>
+            <h3>Add New Time Slot(1 hour)</h3>
 
             <!-- Add Time Slot Form -->
             <form method="POST">
@@ -128,6 +128,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <div class="time-field">
                     <button type="submit">Add Time Slot</button>
                 </div>
+
+                <?php if ($message): ?>
+                    <script>
+                        alert("<?php echo addslashes($message); ?>");
+                    </script>
+                <?php endif; ?>
+
             </form>
 
             <hr class="section-divider">
@@ -143,48 +150,49 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     $stmt->execute();
                     $slotResult = $stmt->get_result();
                     $count = $slotResult ? $slotResult->num_rows : 0;
-                ?>
+                    ?>
 
-                <div class="slot-card">
-                    <div class="card-header">
-                        <h4><?php echo ucfirst($catName); ?></h4>
-                        <span class="slot-count"><?php echo $count; ?></span>
+                    <div class="slot-card">
+                        <div class="card-header">
+                            <h4><?php echo ucfirst($catName); ?></h4>
+                            <span class="slot-count"><?php echo $count; ?></span>
+                        </div>
+
+                        <table class="slot-table">
+                            <thead>
+                                <tr>
+                                    <th>Start</th>
+                                    <th>End</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php
+                                if ($count > 0) {
+                                    while ($slot = $slotResult->fetch_assoc()) {
+                                        ?>
+                                        <tr>
+                                            <td><?php echo date('h:i A', strtotime($slot['start_time'])); ?></td>
+                                            <td><?php echo date('h:i A', strtotime($slot['end_time'])); ?></td>
+                                            <td class="action-cell">
+                                                <form method="POST" class="delete-form">
+                                                    <input type="hidden" name="delete_id" value="<?php echo $slot['id']; ?>">
+                                                    <button type="submit" class="delete-btn">Delete</button>
+                                                </form>
+                                            </td>
+                                        </tr>
+                                        <?php
+                                    }
+                                } else {
+                                    echo "<tr><td colspan='3' class='no-data'>No Slots Available</td></tr>";
+                                }
+                                ?>
+                            </tbody>
+                        </table>
                     </div>
 
-                    <table class="slot-table">
-                        <thead>
-                            <tr>
-                                <th>Start</th>
-                                <th>End</th>
-                                <th>Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php
-                            if ($count > 0) {
-                                while ($slot = $slotResult->fetch_assoc()) {
-                                    ?>
-                                    <tr>
-                                        <td><?php echo date('h:i A', strtotime($slot['start_time'])); ?></td>
-                                        <td><?php echo date('h:i A', strtotime($slot['end_time'])); ?></td>
-                                        <td class="action-cell">
-                                            <form method="POST" class="delete-form">
-                                                <input type="hidden" name="delete_id" value="<?php echo $slot['id']; ?>">
-                                                <button type="submit" class="delete-btn">Delete</button>
-                                            </form>
-                                        </td>
-                                    </tr>
-                                    <?php
-                                }
-                            } else {
-                                echo "<tr><td colspan='3' class='no-data'>No Slots Available</td></tr>";
-                            }
-                            ?>
-                        </tbody>
-                    </table>
-                </div>
-
-                <?php $stmt->close(); } ?>
+                    <?php $stmt->close();
+                } ?>
             </div>
         </div>
     </div>
@@ -222,4 +230,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         category.dispatchEvent(new Event("change"));
     </script>
 </body>
+
 </html>
