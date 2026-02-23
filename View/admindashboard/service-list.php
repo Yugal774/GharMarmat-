@@ -13,8 +13,8 @@ $professionResult = mysqli_query($conn, $professionQuery);
 <head>
     <meta charset="UTF-8">
     <title>Service Dashboard</title>
-    <link rel="stylesheet" href="../assets/css/service-list.css">
     <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="../assets/css/service-list.css">
 </head>
 
 <body>

@@ -6,7 +6,7 @@ $message = "";
 // Only process if form submitted
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-    // 1️⃣ Handle deletion
+    // Handle deletion
     if (isset($_POST['delete_id'])) {
         $delete_id = intval($_POST['delete_id']);
 
@@ -33,7 +33,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $stmtCheck->close();
     }
 
-    // 2️⃣ Handle adding new time slot
+    // Handle adding new time slot
     elseif (isset($_POST['category'], $_POST['start_time'], $_POST['end_time'])) {
 
         $category = strtolower(trim($_POST['category'])); // store as lowercase

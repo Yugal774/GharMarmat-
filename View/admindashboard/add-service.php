@@ -91,7 +91,7 @@
             <label for="service_name">Service Name:</label>
             <input type="text" name="service_name" id="service_name" placeholder="Enter service name" required>
             <button type="submit" name="add_service">Add Service</button>
-            
+
             <?php
             include '../../includes/dbconnect.php';
 

@@ -1,14 +1,3 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: Arial, sans-serif;
-}
-
-body {
-    background: #f4f6f9;
-}
-
 .service-list-container {
     margin-left: 18vw;
     font-family: Arial, sans-serif;
@@ -42,7 +31,6 @@ body {
     display: flex;
     align-items: center;
     width: 100%;
-    margin-bottom: 1rem;
     padding: 0;
 }
 
@@ -50,6 +38,7 @@ body {
     background: #2563eb;
     color: #fff;
     text-decoration: none;
+    margin-bottom: 1rem;
     padding: 0.5rem 0.9rem;
     border-radius: 0.5rem;
     cursor: pointer;

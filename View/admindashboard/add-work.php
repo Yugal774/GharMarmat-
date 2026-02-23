@@ -98,15 +98,6 @@ if (isset($_POST['add_work'])) {
 
             <input type="number" name="work_price" step="0.01" placeholder="Price (NPR)" required>
 
-            <select name="profession_id" required>
-                <option value="">Select Service</option>
-                <?php while ($row = mysqli_fetch_assoc($professionResult)): ?>
-                    <option value="<?= $row['profession_id']; ?>">
-                        <?= htmlspecialchars($row['profession_name']); ?>
-                    </option>
-                <?php endwhile; ?>
-            </select>
-
             <button type="submit" name="add_work">Add Work</button>
         </form>
     </div>

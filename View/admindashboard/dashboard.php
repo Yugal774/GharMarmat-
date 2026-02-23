@@ -1,12 +1,61 @@
 <?php
+include '../../includes/dbconnect.php';
 session_start();
 
 if (!isset($_SESSION['username']) || $_SESSION['role'] !== 'admin') {
     header('location:../users/login.php');
     exit;
 }
-?>
 
+//Customers count
+$customerQuery = "SELECT COUNT(*) AS total_customers FROM users WHERE role = 'customer'";
+$customerResult = mysqli_query($conn, $customerQuery);
+$customerCount = mysqli_fetch_assoc($customerResult)['total_customers'];
+
+
+//Professional count
+$professionalQuery = "SELECT COUNT(*) AS total_professionals FROM users where role = 'professional'";
+$professionaResult = mysqli_query($conn, $professionalQuery);
+$professionalCount = mysqli_fetch_assoc($professionaResult)['total_professionals'];
+
+//pending booking
+$pbookingQuerry = "SELECT COUNT(*) AS total_pbookings FROM bookings WHERE status = 'pending'";
+$pbookingResult = mysqli_query($conn, $pbookingQuerry);
+$pbookingCount = mysqli_fetch_assoc($pbookingResult)['total_pbookings'];
+
+//confirmed booking
+$cbookingQuerry = "SELECT COUNT(*) AS total_cbookings FROM bookings WHERE status = 'confirmed'";
+$cbookingResult = mysqli_query($conn, $cbookingQuerry);
+$cbookingCount = mysqli_fetch_assoc($cbookingResult)['total_cbookings'];
+
+// Fetch recent bookings (latest 5)
+// Fetch recent bookings
+$query = "
+    SELECT 
+        bookings.booking_id,
+        bookings.username,
+        bookings.booking_date,
+        bookings.status,
+        profession.profession_name,
+        time_slots.start_time,
+        time_slots.end_time,
+        time_slots.time_category
+    FROM bookings
+    LEFT JOIN profession 
+        ON bookings.profession_id = profession.profession_id
+    LEFT JOIN time_slots 
+        ON bookings.time_slot_id = time_slots.id
+    ORDER BY bookings.booking_date DESC
+    LIMIT 5
+";
+
+$result = mysqli_query($conn, $query);
+
+if (!$result) {
+    die("Query Failed: " . mysqli_error($conn));
+}
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -14,8 +63,7 @@ if (!isset($_SESSION['username']) || $_SESSION['role'] !== 'admin') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css"
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css"
         integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
 
@@ -52,7 +100,7 @@ if (!isset($_SESSION['username']) || $_SESSION['role'] !== 'admin') {
         <div class="content">
             <div class="customers" id="cont-box">
                 <div class="data">
-                    <span>1000</span>
+                    <span><?= $customerCount; ?></span>
                     <p>Customers</p>
                 </div>
                 <div class="icon">
@@ -62,7 +110,7 @@ if (!isset($_SESSION['username']) || $_SESSION['role'] !== 'admin') {
 
             <div class="ser-provider" id="cont-box">
                 <div class="data">
-                    <span>100</span>
+                    <span><?= $professionalCount ?></span>
                     <p>Service Providers</p>
                 </div>
                 <div class="icon">
@@ -70,70 +118,124 @@ if (!isset($_SESSION['username']) || $_SESSION['role'] !== 'admin') {
                 </div>
             </div>
 
-            <div class="bookings" id="cont-box">
+            <div class="pending" id="cont-box">
                 <div class="data">
-                    <span>100</span>
-                    <p>Bookings</p>
+                    <span><?= $pbookingCount ?></span>
+                    <p>Pending Booking</p>
                 </div>
                 <div class="icon">
-                    <i class="fa-solid fa-calendar-days"></i>
+                    <i class="fa-solid fa-hourglass-half"></i>
                 </div>
             </div>
 
-            <div class="income" id="cont-box">
+            <div class="Confirmed" id="cont-box">
                 <div class="data">
-                    <span>$1000</span>
-                    <p>Total Income</p>
+                    <span><?= $cbookingCount ?></span>
+                    <p>Confirmed Booking</p>
                 </div>
                 <div class="icon">
-                    <i class="fa-solid fa-money-bill-wave"></i>
+                    <i class="fa-solid fa-circle-check"></i>
                 </div>
             </div>
         </div>
 
         <!-- Recent Bookings Table -->
         <div class="dash-data">
-            <div class="recent-book">
-                <div class="top">
-                    <h3>Recent Bookings</h3>
-                    <button class="btn btn-primary btn-sm">View All</button>
+            <!-- Recent Bookings Table -->
+            <div class="dash-data">
+                <div class="recent-book">
+                    <div class="top">
+                        <h3>Recent Bookings</h3>
+                        <button class="btn btn-primary btn-sm">View All</button>
+                    </div>
+
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Name</th>
+                                <th>Service</th>
+                                <th>Booking Date</th>
+                                <th>Time Category</th>
+                                <th>Booking Time</th>
+                                <th>Status</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+
+                            <?php
+                            if (mysqli_num_rows($result) > 0) {
+                                while ($row = mysqli_fetch_assoc($result)) {
+
+                                    // Format booking date
+                                    $bookingDate = date('d M Y', strtotime($row['booking_date']));
+
+                                    ?>
+
+                                    <tr>
+                                        <td><?= $row['booking_id']; ?></td>
+                                        <td><?= $row['username']; ?></td>
+                                        <td><?= $row['profession_name']; ?></td>
+                                        <td><?=$bookingDate?></td>
+                                        <td><?= $row['time_category'] ?></td>
+                                        <td>
+                                            <?=
+                                                isset($row['start_time'])
+                                                ? date('H:i', strtotime($row['start_time']))
+                                                : '-';
+                                            ?> -
+                                            <?=
+                                                isset($row['end_time'])
+                                                ? date('H:i', strtotime($row['end_time']))
+                                                : '-';
+                                            ?>
+                                        </td>
+                                        <td>
+                                            <?php
+                                            if ($row['status'] == 'pending') {
+                                                echo "<span class='badge bg-warning text-dark'>Pending</span>";
+                                            } elseif ($row['status'] == 'confirmed') {
+                                                echo "<span class='badge bg-success'>Confirmed</span>";
+                                            } elseif ($row['status'] == 'completed') {
+                                                echo "<span class='badge bg-primary'>Completed</span>";
+                                            } elseif ($row['status'] == 'cancelled') {
+                                                echo "<span class='badge bg-danger'>Cancelled</span>";
+                                            }
+                                            ?>
+                                        </td>
+                                        <td>
+                                            <button class="editButton">
+                                                <a href="edit-booking.php?id=<?= $row['booking_id']; ?>">
+                                                    <i class="fas fa-edit"></i> Edit
+                                                </a>
+                                            </button>
+                                            <button class="deleteButton">
+                                                <a href="delete-booking.php?id=<?= $row['booking_id']; ?>"
+                                                    onclick="return confirm('Are you sure you want to delete this booking?');">
+                                                    <i class="fas fa-trash-can"></i>
+                                                </a>
+                                            </button>
+                                        </td>
+                                    </tr>
+
+                                    <?php
+                                }
+                            } else {
+                                echo "<tr><td colspan='8' class='text-center'>No recent bookings found</td></tr>";
+                            }
+                            ?>
+
+                        </tbody>
+
+                    </table>
                 </div>
-
-                <table class="table table-bordered">
-                    <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Name</th>
-                            <th>Booking Date</th>
-                            <th>Service</th>
-                            <th>Amount</th>
-                            <th>Status</th>
-                        </tr>
-                    </thead>
-
-                    <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>Yugal</td>
-                            <td>2025/07/15</td>
-                            <td>Plumber</td>
-                            <td>$1000</td>
-                            <td>Pending</td>
-                        </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>Yugal</td>
-                            <td>2025/07/15</td>
-                            <td>Electrician</td>
-                            <td>$500</td>
-                            <td>Completed</td>
-                        </tr>
-                    </tbody>
-                </table>
             </div>
         </div>
 
     </div>
 
 </body>
+
 </html>
