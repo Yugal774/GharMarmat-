@@ -146,7 +146,7 @@ if (!$result) {
                 <div class="recent-book">
                     <div class="top">
                         <h3>Recent Bookings</h3>
-                        <button class="btn btn-primary btn-sm">View All</button>
+                        <a href="all-booking.php"><button class="btn btn-primary btn-sm">View All</button></a>
                     </div>
 
                     <table>

@@ -73,14 +73,25 @@ if (isset($_POST['add_work'])) {
             border: 1px solid #ccc;
         }
 
+        button {
+            cursor: pointer;
+            background: #007bff;
+            color: #fff;
+            border: none;
+            transition: 0.3s;
+        }
+
         button:hover {
-            color: white;
-            background: blue;
+            background: #0056b3;
         }
 
         .error {
             color: red;
             text-align: center;
+        }
+
+        select {
+            background: #fff;
         }
     </style>
 </head>
@@ -97,6 +108,13 @@ if (isset($_POST['add_work'])) {
             <input type="text" name="work_name" placeholder="Work Name" required>
 
             <input type="number" name="work_price" step="0.01" placeholder="Price (NPR)" required>
+
+            <select name="profession_id" required>
+                <option value="">Select Profession</option>
+                <?php while($prof = mysqli_fetch_assoc($professionResult)): ?>
+                    <option value="<?= $prof['profession_id'] ?>"><?= $prof['profession_name'] ?></option>
+                <?php endwhile; ?>
+            </select>
 
             <button type="submit" name="add_work">Add Work</button>
         </form>
