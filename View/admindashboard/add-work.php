@@ -109,12 +109,26 @@ if (isset($_POST['add_work'])) {
 
             <input type="number" name="work_price" step="0.01" placeholder="Price (NPR)" required>
 
-            <select name="profession_id" required>
-                <option value="">Select Profession</option>
-                <?php while($prof = mysqli_fetch_assoc($professionResult)): ?>
-                    <option value="<?= $prof['profession_id'] ?>"><?= $prof['profession_name'] ?></option>
-                <?php endwhile; ?>
-            </select>
+            <?php
+            // Get profession_id from URL safely
+            $selected_profession_id = isset($_GET['profession_id']) ? intval($_GET['profession_id']) : 0;
+
+            // Fetch the profession name from the database
+            $professionName = '';
+            if ($selected_profession_id) {
+                $query = "SELECT profession_name FROM profession WHERE profession_id = $selected_profession_id";
+                $result = mysqli_query($conn, $query);
+                if ($result && mysqli_num_rows($result) > 0) {
+                    $professionName = mysqli_fetch_assoc($result)['profession_name'];
+                }
+            }
+            ?>
+
+            <!-- Show profession name as readonly text -->
+            <input type="text" value="<?= htmlspecialchars($professionName); ?>" readonly>
+
+            <!-- Hidden input to submit the profession_id -->
+            <input type="hidden" name="profession_id" value="<?= $selected_profession_id; ?>">
 
             <button type="submit" name="add_work">Add Work</button>
         </form>

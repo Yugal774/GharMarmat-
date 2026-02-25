@@ -45,7 +45,7 @@ $query = "
         ON bookings.profession_id = profession.profession_id
     LEFT JOIN time_slots 
         ON bookings.time_slot_id = time_slots.id
-    ORDER BY bookings.booking_date DESC
+        ORDER BY booking_date DESC, booking_id DESC
     LIMIT 5
 ";
 
@@ -175,10 +175,10 @@ if (!$result) {
                                     ?>
 
                                     <tr>
-                                        <td><?= $row['booking_id']; ?></td>
+                                        <td># 0<?= $row['booking_id']; ?></td>
                                         <td><?= $row['username']; ?></td>
                                         <td><?= $row['profession_name']; ?></td>
-                                        <td><?=$bookingDate?></td>
+                                        <td><?= $bookingDate ?></td>
                                         <td><?= $row['time_category'] ?></td>
                                         <td>
                                             <?=
