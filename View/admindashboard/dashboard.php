@@ -90,7 +90,6 @@ if (!$result) {
 
             <div class="top-right">
                 <span class="me-2 fw-bold">
-                    100
                 </span>
                 <i class="fa-solid fa-bell"></i>
                 <i class="fa-solid fa-circle-user"></i>
@@ -207,7 +206,7 @@ if (!$result) {
                                         </td>
                                         <td>
                                             <button class="editButton">
-                                                <a href="edit-booking.php?id=<?= $row['booking_id']; ?>">
+                                                <a href="booking-edit.php?booking_id=<?= $row['booking_id']; ?>">
                                                     <i class="fas fa-edit"></i> Edit
                                                 </a>
                                             </button>

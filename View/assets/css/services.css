@@ -1,32 +1,56 @@
-/*main section*/
-main {
-    height: auto;
-    width: 90vw;
-    margin: 2rem auto;
+/* Reset default spacing */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
+/* Full page layout */
+body {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    font-family: Arial, sans-serif;
+}
+
+.heading{
+    text-align: center;
+    font-weight: 600;
+    font-size: 2rem;
+    margin-top: 1rem;
+}
+
+/* Main container */
+main {
+    flex: 1;
+    width: 90vw;
+    margin: auto;
+    background-color: #b5fcb5;
+    border-radius: 12px;
+    padding: 10px 0;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Page heading */
 .book-header {
     text-align: center;
-    margin: 1rem 0;
+    margin-bottom: 10px;
 }
 
 .book-header h2 {
     font-size: 1.8rem;
-    display: inline-block;
-    transition: color 0.3s ease;
 }
 
-.book-header h2:hover {
-    color: rgb(14, 123, 14);
-}
-
+/* Horizontal slider */
 section {
-    height: 62vh;
+    flex: 1;
     display: flex;
     gap: 2vh;
     overflow-x: auto;
-    padding: 20px 10px;
-    scroll-snap-type: x mandatory;
+    overflow-y: hidden;
+    padding: 10px;
     scroll-behavior: smooth;
 }
 
@@ -34,128 +58,100 @@ section {
 section::-webkit-scrollbar {
     display: none;
 }
-section {
-    scrollbar-width: none;
-}
 
+/* Service box */
 article {
     flex: 0 0 auto;
     width: 21.7vw;
     height: 55vh;
-    background: #ffffff;
-    padding: 1.7rem;
+    background-color: white;
+    padding: 1.5rem;
     border-radius: 16px;
-    box-shadow: 0 4px 10px rgba(50, 50, 50, 0.1);
-    transition: transform 0.4s ease;
-    scroll-snap-align: start;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
 
-    display: flex;           /* added to align button */
-    flex-direction: column;  /* stack content vertically */
+    /* slow hover animation */
+    transition: transform 0.5s ease, box-shadow 0.5s ease;
 }
 
+/* Hover effect */
 article:hover {
-    transform: translateY(-8px);
+    transform: translateY(-10px);
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.2);
 }
 
+/* Service title */
 article h3 {
     color: #0bc40b;
-    font-size: 1.4rem;
-    margin-bottom: 0.9rem;
+    text-align: center;
+    margin-bottom: 10px;
 }
 
-article p {
-    font-size: 1rem;
-    color: #555;
-}
-
-ul {
+/* Work list */
+article ul {
     list-style: none;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
 }
 
-ul li {
-    padding-left: 20px;
+/* List item */
+article ul li {
+    padding-left: 18px;
     position: relative;
-    margin-bottom: 8px;
-    font-size: 0.9rem;
+    margin-bottom: 6px;
 }
 
-ul li::before {
+/* Tick mark */
+article ul li::before {
     content: "✓";
     position: absolute;
     left: 0;
     color: #0bc40b;
-    font-weight: bold;
 }
 
-/* Button fixed at bottom */
+/* Book button */
 article a {
-    width: 12vw;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     margin-top: auto;
-    align-self: center;
-    padding: 10px 20px;
-    text-decoration: none;
-    background: rgb(55, 55, 195);
-    color: #fff;
+    padding: 10px;
+    text-align: center;
+    background-color: #3737c3;
+    color: white;
     border-radius: 8px;
-    font-weight: bold;
-    text-align: center;
-}
-
-article a:hover {
-    opacity: 0.85;
-}
-
-footer {
-    background-color: #222;
-    color: #fff;
-    text-align: center;
-    padding: 20px 10px;
-    font-size: 0.9rem;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
-
-footer p {
-    margin: 5px 0;
-}
-
-footer a {
-    color: #0bc40b;
     text-decoration: none;
-    margin-left: 5px;
 }
 
-footer a:hover {
-    text-decoration: underline;
+/* Button hover */
+article a:hover {
+    background-color: #0e7b0e;
 }
 
-
-/* Slider Buttons */
+/* Slider buttons */
 .slider-buttons {
-    display: flex;
-    justify-content: right;
-    gap: 10px;
-    margin-top: 10px;
+    text-align: right;
+    padding: 5px 10px;
 }
 
 .slider-buttons button {
-    padding: 8px 16px;
-    background: rgb(55, 55, 195);
-    color: #fff;
+    padding: 6px 14px;
+    background-color: #3737c3;
+    color: white;
     border: none;
     border-radius: 6px;
     cursor: pointer;
-    font-size: 1rem;
-    font-weight: bold;
-    transition: background-color 0.3s;
 }
 
+/* Slider button hover */
 .slider-buttons button:hover {
-    background-color: blue;
+    background-color: #0e7b0e;
+}
+
+/* Footer */
+footer {
+    height: 5rem;
+    background-color: #222;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 1rem;
 }

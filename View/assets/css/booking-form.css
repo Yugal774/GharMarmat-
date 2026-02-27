@@ -93,3 +93,33 @@ body {
 #book button:hover {
     background-color: #1e4ed8;
 }
+
+/*This is for Booking edit button*/
+.booking-update {
+    width: 100%;
+    background: linear-gradient(135deg, #3b6eea, #2f5bd3);
+    color: #ffffff;
+    border: none;
+    padding: 14px;
+    font-size: 17px;
+    font-weight: 600;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    margin-top: 15px;
+}
+
+/* Hover effect */
+.booking-update:hover {
+    background: linear-gradient(135deg, #2f5bd3, #244bb5);
+}
+
+/* Click effect */
+.booking-update:active {
+    transform: scale(0.98);
+}
+
+/* Optional focus */
+.booking-update:focus {
+    outline: none;
+}

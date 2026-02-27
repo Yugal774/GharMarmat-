@@ -18,67 +18,67 @@ $professionResult = mysqli_query($conn, $professionQuery);
 
 <body>
 
-<?php include '../../includes/servicenav.php'; ?>
-
-<main>
-    <div class="book-header">
-        <h2>Our Services</h2>
+    <div class="header">
+        <?php include '../../includes/navbar.php'; ?>
     </div>
+    <main>
+        <p class="heading">Our Services</p>
 
-    <div class="slider-wrapper">
-        <section>
+        <div class="slider-wrapper">
+            <section>
 
-            <?php while ($profession = mysqli_fetch_assoc($professionResult)) { ?>
-                <article>
-                    <h3><?php echo htmlspecialchars($profession['profession_name']); ?></h3>
+                <?php while ($profession = mysqli_fetch_assoc($professionResult)) { ?>
+                    <article>
+                        <h3><?php echo htmlspecialchars($profession['profession_name']); ?></h3>
 
-                    <ul>
-                        <?php
-                        $professionId = $profession['profession_id'];
+                        <ul>
+                            <?php
+                            $professionId = $profession['profession_id'];
 
-                        $workQuery = "SELECT work_name FROM work WHERE profession_id = $professionId";
-                        $workResult = mysqli_query($conn, $workQuery);
+                            $workQuery = "SELECT work_name FROM work WHERE profession_id = $professionId";
+                            $workResult = mysqli_query($conn, $workQuery);
 
-                        if (mysqli_num_rows($workResult) > 0) {
-                            while ($work = mysqli_fetch_assoc($workResult)) {
-                                echo "<li>" . htmlspecialchars($work['work_name']) . "</li>";
+                            if (mysqli_num_rows($workResult) > 0) {
+                                while ($work = mysqli_fetch_assoc($workResult)) {
+                                    echo "<li>" . htmlspecialchars($work['work_name']) . "</li>";
+                                }
+                            } else {
+                                echo "<li>No work available</li>";
                             }
-                        } else {
-                            echo "<li>No work available</li>";
-                        }
-                        ?>
-                    </ul>
+                            ?>
+                        </ul>
 
-                    <a href="book.php?profession_id=<?php echo $professionId; ?>">Book Now</a>
-                </article>
-            <?php } ?>
+                        <a href="book.php?profession_id=<?php echo $professionId; ?>">Book Now</a>
+                    </article>
+                <?php } ?>
 
-        </section>
+            </section>
 
-        <div class="slider-buttons">
-            <button id="prev">&#10094;</button>
-            <button id="next">&#10095;</button>
+            <div class="slider-buttons">
+                <button id="prev">&#10094;</button>
+                <button id="next">&#10095;</button>
+            </div>
         </div>
-    </div>
-</main>
+    </main>
 
-<footer>
-    <p>&copy; 2025 Gharmarmat. All rights reserved.</p>
-</footer>
+    <footer>
+        <p>&copy; 2025 Gharmarmat. All rights reserved.</p>
+    </footer>
 
-<script>
-    const slider = document.querySelector('section');
-    const prevBtn = document.getElementById('prev');
-    const nextBtn = document.getElementById('next');
+    <script>
+        const slider = document.querySelector('section');
+        const prevBtn = document.getElementById('prev');
+        const nextBtn = document.getElementById('next');
 
-    prevBtn.addEventListener('click', () => {
-        slider.scrollBy({ left: -300, behavior: 'smooth' });
-    });
+        prevBtn.addEventListener('click', () => {
+            slider.scrollBy({ left: -300, behavior: 'smooth' });
+        });
 
-    nextBtn.addEventListener('click', () => {
-        slider.scrollBy({ left: 300, behavior: 'smooth' });
-    });
-</script>
+        nextBtn.addEventListener('click', () => {
+            slider.scrollBy({ left: 300, behavior: 'smooth' });
+        });
+    </script>
 
 </body>
+
 </html>

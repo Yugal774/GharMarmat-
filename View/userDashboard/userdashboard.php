@@ -76,9 +76,9 @@ $booking_result = mysqli_query($conn, $booking_query);
                     $time_slot = mysqli_fetch_assoc($time_result);
                     $time_range = $time_slot['start_time'] . ' - ' . $time_slot['end_time'];
 
-                    // Professional contact
-                    $professional_contact = isset($booking['professional_id']) ? $booking['professional_id'] : '-';
-
+                    // Fetch Professional contact
+                    $professional_result = mysqli_query($conn, "SELECT Contact FROM users WHERE Name = '{$booking['professional_name']}'");
+                    $professional_contact = mysqli_fetch_assoc($professional_result)['Contact'];
                 ?>
                     <tr>
                         <td><?= $booking['booking_id'] ?></td>

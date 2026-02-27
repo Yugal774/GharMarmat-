@@ -7,7 +7,7 @@ if (!isset($_SESSION['username']) || $_SESSION['role'] !== 'admin') {
     exit;
 }
 
-/* ---------------- PAGINATION SETTINGS ---------------- */
+/*PAGINATION SETTINGS*/
 
 $limit = 10; // bookings per page
 
@@ -22,7 +22,7 @@ if ($page < 1) {
 $offset = ($page - 1) * $limit;
 
 
-/* ---------------- GET TOTAL BOOKINGS ---------------- */
+/* GET TOTAL BOOKINGS */
 
 $totalQuery = "SELECT COUNT(*) AS total FROM bookings";
 $totalResult = mysqli_query($conn, $totalQuery);
@@ -34,7 +34,7 @@ $totalBookings = $totalRow['total'];
 $totalPages = ceil($totalBookings / $limit);
 
 
-/* ---------------- FETCH BOOKINGS WITH LIMIT ---------------- */
+/* Fetch only 10 data from booking  */
 
 $query = "
 SELECT 
@@ -142,11 +142,13 @@ if (!$result) {
 
                             <td>
 
-                                <a href="edit-booking.php?id=<?= $row['booking_id'] ?>" class="btn btn-sm btn-primary">Edit</a>
+                                <a href="booking-edit.php?booking_id=<?= $row['booking_id']; ?>" class="btn btn-sm btn-primary">
+                                    <i class="fas fa-edit"></i> Edit
+                                </a>
 
-                                <a href="delete-booking.php?id=<?= $row['booking_id'] ?>" class="btn btn-sm btn-danger"
-                                    onclick="return confirm('Delete booking?')">
-                                    Delete
+                                <a href="delete-booking.php?id=<?= $row['booking_id']; ?>" class="btn btn-sm btn-danger"
+                                    onclick="return confirm('Are you sure you want to delete this booking?');">
+                                    <i class="fas fa-trash-can"></i> Delete
                                 </a>
 
                             </td>
@@ -168,7 +170,7 @@ if (!$result) {
         </table>
 
 
-        <!-- PAGINATION -->
+        <!--PAGINATION >
 
         <nav>
 

@@ -34,19 +34,16 @@ body {
 
 .header button {
     background-color: #1d4ed8;
+    font-weight: bold;
     border: none;
     padding: 10px 16px;
     border-radius: 5px;
     cursor: pointer;
+    color: white;
 }
 
-.header button a {
-    color: #fff;
-    text-decoration: none;
-    font-weight: bold;
-}
 
-.header button:hover {
+button:hover {
     background-color: #2563eb;
 }
 
