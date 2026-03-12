@@ -30,12 +30,14 @@ $booking_result = mysqli_query($conn, $booking_query);
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User Dashboard</title>
     <link rel="stylesheet" href="../assets/css/userDashboard.css">
 </head>
+
 <body>
     <?php include '../../includes/navbar.php'; ?>
 
@@ -63,9 +65,10 @@ $booking_result = mysqli_query($conn, $booking_query);
             <tbody>
                 <?php while ($booking = mysqli_fetch_assoc($booking_result)):
 
-                    // Fetch work name
+                    // Fetch work name safely
                     $work_result = mysqli_query($conn, "SELECT work_name FROM work WHERE work_id = '{$booking['work_id']}'");
-                    $work_name = mysqli_fetch_assoc($work_result)['work_name'];
+                    $work_row = mysqli_fetch_assoc($work_result);
+                    $work_name = $work_row['work_name'] ?? "Not available";
 
                     // Fetch profession name
                     $profession_result = mysqli_query($conn, "SELECT profession_name FROM profession WHERE profession_id = '{$booking['profession_id']}'");
@@ -79,7 +82,7 @@ $booking_result = mysqli_query($conn, $booking_query);
                     // Fetch Professional contact
                     $professional_result = mysqli_query($conn, "SELECT Contact FROM users WHERE Name = '{$booking['professional_name']}'");
                     $professional_contact = mysqli_fetch_assoc($professional_result)['Contact'];
-                ?>
+                    ?>
                     <tr>
                         <td><?= $booking['booking_id'] ?></td>
                         <td><?= $work_name ?></td>
@@ -112,4 +115,5 @@ $booking_result = mysqli_query($conn, $booking_query);
         }
     </script>
 </body>
+
 </html>

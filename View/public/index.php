@@ -38,9 +38,9 @@
                                 echo '<ul><a href="/GharMarmat/View/userDashboard/userdashboard.php"><i class="fa-solid fa-user"></i> ' . $username . '</a></ul>';
                             } elseif ($_SESSION['role'] === 'professional') {
                                 echo '<ul><a href="\GharMarmat\View\public\professionalDashboard\professionaldashboard.php"><i class="fa-solid fa-user"></i> ' . $username . '</a></ul>';
-                            } else {
-                                echo '<ul><a href="#"><i class="fa-solid fa-user"></i> ' . $username . '</a></ul>';
-                            }
+                            }elseif ($_SESSION['role'] === 'admin') {
+                                echo '<ul><a href="../admindashboard/dashboard.php"><i class="fa-solid fa-user"></i> ' . $username . '</a></ul>';
+                            } 
                         } else {
                             echo '<ul><a href="../users/login.php"><i class="fa-solid fa-user"></i> Login</a></ul>';
                             echo '<ul><a href="../users/registerType.php">Register</a></ul>';

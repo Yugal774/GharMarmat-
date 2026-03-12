@@ -72,7 +72,7 @@ $professionResult = mysqli_query($conn, $professionQuery);
                                 <?php while ($work = mysqli_fetch_assoc($workResult)): ?>
                                     <tr>
                                         <td><?php echo htmlspecialchars($work['work_name']); ?></td>
-                                        <td><?php echo number_format($work['work_price'], 2); ?></td>
+                                        <td>Rs. <?php echo number_format($work['work_price'], 2); ?> / hr</td>
                                         <td>
                                             <?php
                                             echo '<a href="edit-work.php?id=' . $work['work_id'] . '" class="edit">Edit</a> ';

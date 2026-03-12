@@ -41,7 +41,7 @@ if (session_status() === PHP_SESSION_NONE) {
                             } elseif ($_SESSION['role'] === 'professional') {
                                 echo '<li><a href="/GharMarmat/View/public/professionalDashboard/professionaldashboard.php"><i class="fa-solid fa-user"></i> ' . $username . '</a></li>';
                             } else {
-                                echo '<li><a href="#"><i class="fa-solid fa-user"></i> ' . $username . '</a></li>';
+                                echo '<li><a href="../View/admindashboard/dashboard.php"><i class="fa-solid fa-user"></i> ' . $username . '</a></li>';
                             }
                         } else {
                             echo '<li><a href="/GharMarmat/View/users/login.php"><i class="fa-solid fa-user"></i> Login</a></li>';
